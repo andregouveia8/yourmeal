@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#371c1e</color>
+    <color name="colorAccent">#dda417</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="BackgroundColor">#e1e0dd</color>
+    <color name="WhiteColor">#ffffff</color>
+    <color name="MarromColor1">#371c1e</color>
+    <color name="MarromColorOpacity">#ea371c1e</color>
+    <color name="MarromColor2">#6d595b</color>
+    <color name="MarromColor3">#918384</color>
+    <color name="BlackColor">#000000</color>
+</resources>

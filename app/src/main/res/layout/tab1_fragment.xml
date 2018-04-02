@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/BackgroundColor"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/dataDia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/worksanssemibold"
+        android:text="Sexta-Feira"
+        android:textAlignment="textStart"
+        android:textColor="@color/MarromColor1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/dataDiaMes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dataDiaMes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dataDia"
+        android:layout_centerHorizontal="true"
+        android:text="19 Março"
+        android:textColor="@color/MarromColor1"
+        app:layout_constraintBottom_toTopOf="@+id/dataDia2"
+        app:layout_constraintStart_toStartOf="@+id/dataDia"
+        app:layout_constraintTop_toBottomOf="@+id/dataDia" />
+
+    <TextView
+        android:id="@+id/dataDia2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="107dp"
+        android:fontFamily="@font/worksanssemibold"
+        android:text="Carne"
+        android:textAlignment="textStart"
+        android:textColor="@color/MarromColor1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/txtEmail_Login"
+        app:layout_constraintEnd_toEndOf="@+id/txtEmail_Login"
+        app:layout_constraintTop_toBottomOf="@+id/dataDiaMes" />
+
+    <TextView
+        android:id="@+id/dataDia4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="197dp"
+        android:fontFamily="@font/worksanssemibold"
+        android:text="Peixe"
+        android:textAlignment="textStart"
+        android:textColor="@color/MarromColor1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/dataDia3"
+        app:layout_constraintEnd_toEndOf="@+id/txtEmail_Login"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail_Login" />
+
+    <TextView
+        android:id="@+id/dataDia3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="195dp"
+        android:fontFamily="@font/worksanssemibold"
+        android:text="Vegan"
+        android:textAlignment="textStart"
+        android:textColor="@color/MarromColor1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataDia4" />
+
+    <EditText
+        android:id="@+id/txtVegan_Func"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="146dp"
+        android:background="@drawable/inputlogin"
+        android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/worksanslight"
+        android:inputType="text"
+        android:text="Tofu com Broa"
+        android:textAlignment="center"
+        android:textColor="@color/BlackColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/dataDia4"
+        app:layout_constraintEnd_toStartOf="@+id/btnFuncCarne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
+
+    <EditText
+        android:id="@+id/txtEmail_Login3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/inputlogin"
+        android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/worksanslight"
+        android:inputType="text"
+        android:text="Salmão Grelhado"
+        android:textAlignment="center"
+        android:textColor="@color/BlackColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/dataDia4"
+        app:layout_constraintEnd_toStartOf="@+id/btnFuncCarne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
+
+    <EditText
+        android:id="@+id/txtEmail_Login2"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/btnFuncCarne"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/inputlogin"
+        android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/worksanslight"
+        android:inputType="text"
+        android:text="Pizza Tradicional"
+        android:textAlignment="center"
+        android:textColor="@color/BlackColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/dataDia4"
+        app:layout_constraintEnd_toStartOf="@+id/btnFuncCarne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
+
+    <Button
+        android:id="@+id/btnFuncCarne"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="55dp"
+        android:layout_height="38dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="148dp"
+        android:layout_toEndOf="@+id/txtEmail_Login3"
+        android:drawableStart="@drawable/plusbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtEmail_Login"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <Button
+        android:id="@+id/btnFuncPeixe"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="55dp"
+        android:layout_height="38dp"
+        android:layout_alignStart="@+id/btnFuncCarne"
+        android:layout_centerVertical="true"
+        android:drawableStart="@drawable/plusbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtEmail_Login"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <Button
+        android:id="@+id/btnFuncVegan"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="55dp"
+        android:layout_height="38dp"
+        android:layout_alignTop="@+id/txtVegan_Func"
+        android:layout_toEndOf="@+id/txtVegan_Func"
+        android:drawableStart="@drawable/plusbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtEmail_Login"
+        tools:layout_editor_absoluteY="153dp" />
+
+    <Button
+        android:id="@+id/btnFuncAdicionar"
+        android:layout_width="198dp"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="58dp"
+        android:background="@drawable/buttonstyle3"
+        android:text="Adicionar"
+        android:textColor="@color/MarromColor1" />
+
+</RelativeLayout>
