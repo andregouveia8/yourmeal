@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-img = findViewById(R.id.imgLoading);
+        img = findViewById(R.id.imgLoading);
 
 
         Thread myThread = new Thread(){

@@ -17,11 +17,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".NoReservationActivity" />
         <activity
             android:name=".EmployeeActivity"
-            android:label="@string/title_activity_employee"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_employee" />
+        <activity
+            android:name=".MealActivity"
+            android:label="@string/title_activity_meal"/>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile" />
+        <activity
+            android:name=".ReservationActivity"
+            android:label="@string/title_activity_reservation"></activity>
     </application>
 
 </manifest>

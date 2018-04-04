@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/reservation_menu"
+        android:icon="@drawable/iconreservation1"
+        android:title="@string/title_reservas" />
+
+    <item
+        android:id="@+id/meal_menu"
+        android:icon="@drawable/iconfork"
+        android:title="@string/title_ementa" />
+
+    <item
+        android:id="@+id/profile_menu"
+        android:icon="@drawable/iconprofile"
+        android:title="@string/title_perfil" />
+
+</menu>

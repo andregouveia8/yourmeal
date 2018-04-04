@@ -8,11 +8,14 @@
 
 
     <string name="title_activity_users">UsersActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_activity_employee">employeeActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="tab_text_1">Refeições</string>
     <string name="tab_text_2">Reservas</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="tab_text_3">Carne</string>
+    <string name="tab_text_4">Peixe</string>
+    <string name="tab_text_5">Vegan</string>
+    <string name="title_activity_meal">MealActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_reservation">ReservationActivity</string>
 </resources>
