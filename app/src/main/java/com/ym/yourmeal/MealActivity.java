@@ -53,7 +53,7 @@ public class MealActivity extends AppCompatActivity {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.reservation_menu:
-                                Intent intentReservation = new Intent(getApplicationContext(),ReservationActivity.class);
+                                Intent intentReservation = new Intent(getApplicationContext(),NoReservationActivity.class);
                                 startActivity(intentReservation);
                                 break;
                             case R.id.meal_menu:

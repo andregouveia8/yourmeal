@@ -1,21 +1,19 @@
 <resources>
     <string name="app_name">yourmeal</string>
     <string name="action_settings">Settings</string>
-    <string name="title_notifications">Notifications</string>
     <string name="title_reservas">Reservas</string>
     <string name="title_ementa">Ementa</string>
     <string name="title_perfil">Perfil</string>
 
 
-    <string name="title_activity_users">UsersActivity</string>
-    <string name="title_activity_employee">employeeActivity</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_employee">yourmeal</string>
     <string name="tab_text_1">Refeições</string>
     <string name="tab_text_2">Reservas</string>
     <string name="tab_text_3">Carne</string>
     <string name="tab_text_4">Peixe</string>
     <string name="tab_text_5">Vegan</string>
-    <string name="title_activity_meal">MealActivity</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-    <string name="title_activity_reservation">ReservationActivity</string>
+    <string name="title_activity_meal">Ementa</string>
+    <string name="title_activity_profile">Perfil</string>
+    <string name="title_activity_reservation">Reservas</string>
+    <string name="title_activity_no_reservation">Reservas</string>
 </resources>

@@ -22,13 +22,16 @@
             android:label="@string/title_activity_employee" />
         <activity
             android:name=".MealActivity"
-            android:label="@string/title_activity_meal"/>
+            android:label="@string/title_activity_meal" />
         <activity
             android:name=".ProfileActivity"
             android:label="@string/title_activity_profile" />
         <activity
             android:name=".ReservationActivity"
-            android:label="@string/title_activity_reservation"></activity>
+            android:label="@string/title_activity_reservation" />
+        <activity
+            android:name=".NoReservationActivity"
+            android:label="@string/title_activity_no_reservation"></activity>
     </application>
 
 </manifest>
