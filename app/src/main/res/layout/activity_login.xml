@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:theme="@style/AppTheme"
     android:layout_height="match_parent"
     tools:background="@color/BackgroundColor"
     tools:context="com.ym.yourmeal.LoginActivity"
@@ -14,32 +15,33 @@
         android:layout_height="120dp"
         android:layout_marginBottom="69dp"
         android:layout_marginTop="89dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtEmail_Login"
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword_Atual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logologin" />
 
     <EditText
-        android:id="@+id/txtEmail_Login"
+        android:id="@+id/txtPassword_Atual"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="52dp"
         android:layout_marginStart="52dp"
+        android:hint="E-mail"
         android:background="@drawable/inputlogin"
         android:ems="10"
         android:fontFamily="@font/worksanslight"
-        android:hint="E-mail"
+
         android:inputType="textEmailAddress"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/txtPassword_Login"
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword_Nova"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/txtPassword_Login"
+        android:id="@+id/txtPassword_Nova"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginBottom="18dp"
@@ -54,7 +56,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail_Login" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword_Atual" />
 
 
     <Button
@@ -73,6 +75,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword_Login" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword_Nova" />
 
 </android.support.constraint.ConstraintLayout>

@@ -49,8 +49,8 @@
         android:textColor="@color/MarromColor1"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtEmail_Login"
-        app:layout_constraintEnd_toEndOf="@+id/txtEmail_Login"
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword_Atual"
+        app:layout_constraintEnd_toEndOf="@+id/txtPassword_Atual"
         app:layout_constraintTop_toBottomOf="@+id/dataDiaMes" />
 
     <TextView
@@ -67,8 +67,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/dataDia3"
-        app:layout_constraintEnd_toEndOf="@+id/txtEmail_Login"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail_Login" />
+        app:layout_constraintEnd_toEndOf="@+id/txtPassword_Atual"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword_Atual" />
 
     <TextView
         android:id="@+id/dataDia3"

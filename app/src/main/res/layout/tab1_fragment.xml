@@ -50,8 +50,8 @@
         android:textColor="@color/MarromColor1"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtEmail_Login"
-        app:layout_constraintEnd_toEndOf="@+id/txtEmail_Login"
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword_Atual"
+        app:layout_constraintEnd_toEndOf="@+id/txtPassword_Atual"
         app:layout_constraintTop_toBottomOf="@+id/dataDiaMes" />
 
     <TextView
@@ -68,8 +68,8 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/dataDia3"
-        app:layout_constraintEnd_toEndOf="@+id/txtEmail_Login"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail_Login" />
+        app:layout_constraintEnd_toEndOf="@+id/txtPassword_Atual"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword_Atual" />
 
     <TextView
         android:id="@+id/dataDia3"
@@ -159,7 +159,7 @@
         android:layout_toEndOf="@+id/txtEmail_Login3"
         android:drawableStart="@drawable/plusbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtEmail_Login"
+        app:layout_constraintStart_toEndOf="@+id/txtPassword_Atual"
         tools:layout_editor_absoluteY="153dp" />
 
     <Button
@@ -171,7 +171,7 @@
         android:layout_centerVertical="true"
         android:drawableStart="@drawable/plusbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtEmail_Login"
+        app:layout_constraintStart_toEndOf="@+id/txtPassword_Atual"
         tools:layout_editor_absoluteY="153dp" />
 
     <Button
@@ -183,7 +183,7 @@
         android:layout_toEndOf="@+id/txtVegan_Func"
         android:drawableStart="@drawable/plusbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtEmail_Login"
+        app:layout_constraintStart_toEndOf="@+id/txtPassword_Atual"
         tools:layout_editor_absoluteY="153dp" />
 
     <Button

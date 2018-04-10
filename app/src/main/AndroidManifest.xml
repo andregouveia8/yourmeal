@@ -31,7 +31,8 @@
             android:label="@string/title_activity_reservation" />
         <activity
             android:name=".NoReservationActivity"
-            android:label="@string/title_activity_no_reservation"></activity>
+            android:label="@string/title_activity_no_reservation" />
+        <activity android:name=".ChangeProfileActivity"></activity>
     </application>
 
 </manifest>

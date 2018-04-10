@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -42,6 +44,23 @@ public class ProfileActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        final Button btnEditar = findViewById(R.id.btnEditarPerfil);
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(),ChangeProfileActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+
+
     }
+
+
+
 
 }
