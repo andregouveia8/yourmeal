@@ -1,6 +1,7 @@
 package com.ym.yourmeal;
 
 import android.content.Intent;
+import android.os.UserManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ym.yourmeal.models.User;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,7 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     EditText txtemail, txtpassword;
     String email, password;
-    private final String TAG = "LoginFirebase";
+
+
 
 
     @Override
@@ -41,11 +46,39 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
                     Intent i = new Intent(getApplicationContext(), MealActivity.class);
                     startActivity(i);
+
+                    String userID = user.getUid();
+
+                    ArrayList<User> users = com.ym.yourmeal.imp.UserManager.getInstance().getUsers();
+
+                    for(int x = 0; x<users.size();x++){
+if(userID == users.getUser(i).)
+                    }
+
+
+
+                    Log.d("userID",userID);
+
+
+                    //TODO login com users diferentes
+
+                   /* if(){
+                        Intent iUser = new Intent(getApplicationContext(), MealActivity.class);
+                        startActivity(iUser);
+
+                    } else if() {
+                        Intent iFunc = new Intent(getApplicationContext(), EmployeeActivity.class);
+                        startActivity(iFunc);
+
+                    }*/
+
+
+
                 } else {
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+
                 }
             }
         };
@@ -99,43 +132,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void signIn(View view){
-
-
         if (!validateForm()) {
             return;
         }
-
-        /* FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
-
-            // Check if user's email is verified
-            boolean emailVerified = user.isEmailVerified();
-
-            // The user's ID, unique to the Firebase project. Do NOT use this value to
-            // authenticate with your backend server, if you have one. Use
-            // FirebaseUser.getToken() instead.
-            String uid = user.getUid();
-        }
-           */
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "Entrou com sucesso!!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Entrou com sucesso!!!", Toast.LENGTH_SHORT).show();
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Credenciais erradas!!!", Toast.LENGTH_LONG).show();
-                            //Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                            // Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Credenciais erradas!!!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
