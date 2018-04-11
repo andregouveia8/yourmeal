@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.ym.yourmeal.models.User;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+
+    private FirebaseAuth mAuth;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -50,14 +53,18 @@ public class ProfileActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         ArrayList<User> users = new ArrayList<User>();
-
-        /*for (int x = 0; x < users.size();x++){
-            if(userLogged.equals(users.get(x).getName())){
-
+mAuth = FirebaseAuth.getInstance();
+       Button btnSair = (Button) findViewById(R.id.btnSairPerfil);
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Fazer o logout
+                mAuth.signOut();
+                // Chamar primeira atividade (login)
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
             }
-        }*/
-        //TextView user;
-       // user = (TextView) findViewById(R.id.txtNomePerfil);
+        });
+
 
 
         final Button btnEditar = findViewById(R.id.btnEditarPerfil);
