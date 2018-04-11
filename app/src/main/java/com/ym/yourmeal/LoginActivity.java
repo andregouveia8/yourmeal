@@ -1,6 +1,8 @@
 package com.ym.yourmeal;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.UserManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -58,9 +60,12 @@ public class LoginActivity extends AppCompatActivity {
                         if(userID.equals(users.get(x).getId())){
                             if(users.get(x).getType().equals("utilizador")){
 
-                                Log.d("userID",users.get(x).getType());
+                                String userLogado = mAuth.getCurrentUser().getEmail();
+
+
 
                                 Intent iUser = new Intent(getApplicationContext(), MealActivity.class);
+                                iUser.putExtra("email",userLogado);
                                 startActivity(iUser);
 
                             }else if(users.get(x).getType().equals("administrador")){

@@ -47,7 +47,7 @@
                     android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginRight="20dp"

@@ -32,6 +32,7 @@ public class MealActivity extends AppCompatActivity {
     String nomeCarne;
     String nomePeixe;
     String nomeVegan;
+    String userLogado;
 
 
 
@@ -127,8 +128,13 @@ public class MealActivity extends AppCompatActivity {
                     }
                 });
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
+
+        Intent i = getIntent();
+        userLogado = i.getStringExtra("email");
+
+        Log.d("Meat", "User em MA: " + userLogado);
 
 
         editor.putString("MeatName", beefMenu.getName());
@@ -137,7 +143,7 @@ public class MealActivity extends AppCompatActivity {
         editor.putString("MeatPhoto", beefMenu.getImg());
         editor.putString("FishPhoto", fishMenu.getImg());
         editor.putString("VeganPhoto", vegetarianMenu.getImg());
-
+        editor.putString("UserLogado",userLogado);
         editor.commit();
 
 
@@ -152,7 +158,6 @@ public class MealActivity extends AppCompatActivity {
         adapter.addFragment(new MeatFragment(), "CARNE");
         adapter.addFragment(new FishFragment(), "PEIXE");
         adapter.addFragment(new VeganFragment(), "VEGAN");
-
         viewPager.setAdapter(adapter);
     }
 
