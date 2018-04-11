@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgPeixe"
+            android:id="@+id/imgPeixeMeal"
             android:layout_width="match_parent"
             android:layout_height="257dp"
             app:srcCompat="@drawable/pizza" />
@@ -51,7 +51,7 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_margin="10dp"
             android:background="@drawable/buttonstyle2"
-            android:text="RESERVAR"
+            android:text="INFO"
             android:textColor="@color/WhiteColor" />
 
         <Button
@@ -60,7 +60,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center_vertical|center_horizontal"
             android:background="@drawable/buttonstyle1"
-            android:text="INFO"
+            android:text="RESERVAR"
             android:textColor="@color/WhiteColor" />
 
     </LinearLayout>

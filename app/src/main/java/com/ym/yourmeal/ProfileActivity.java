@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.ym.yourmeal.models.User;
+
+import java.util.ArrayList;
+
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -44,6 +48,16 @@ public class ProfileActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        ArrayList<User> users = new ArrayList<User>();
+
+        /*for (int x = 0; x < users.size();x++){
+            if(userLogged.equals(users.get(x).getName())){
+
+            }
+        }*/
+        //TextView user;
+       // user = (TextView) findViewById(R.id.txtNomePerfil);
 
 
         final Button btnEditar = findViewById(R.id.btnEditarPerfil);

@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgCarneMeal"
             android:layout_width="match_parent"
             android:layout_height="257dp"
             app:srcCompat="@drawable/pizza" />
@@ -27,7 +27,6 @@
             android:layout_height="56dp"
             android:fontFamily="@font/worksanssemibold"
             android:gravity="center_vertical"
-            android:text="Pizza Tradicional"
             android:textAlignment="center"
             android:textColor="@color/MarromColor1"
             android:textSize="24sp"

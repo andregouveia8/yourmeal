@@ -1,31 +1,24 @@
 package com.ym.yourmeal;
 
-import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.ym.yourmeal.models.Menu;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
 import android.widget.TextView;
 
+import com.ym.yourmeal.imp.MealManager;
+import com.ym.yourmeal.imp.MenuManager;
 import com.ym.yourmeal.models.Meal;
-import com.ym.yourmeal.models.User;
 
 import java.util.ArrayList;
 
@@ -33,6 +26,15 @@ public class MealActivity extends AppCompatActivity {
 
     private  SectionsPageAdapter sectionsPageAdapter;
     private ViewPager viewPager;
+    public static  Meal beefMenu;
+    public Meal fishMenu;
+    public Meal vegetarianMenu;
+    String nomeCarne;
+    String nomePeixe;
+    String nomeVegan;
+
+
+
 
 
     @Override
@@ -52,22 +54,57 @@ public class MealActivity extends AppCompatActivity {
                 findViewById(R.id.navigation);
 
 
+        ArrayList<Menu> menu = MenuManager.getInstance().getMenus();
+        ArrayList<Meal> meals = MealManager.getInstance().getMeals();
 
-        //ArrayList<Menu> menu = com.ym.yourmeal.imp.MealManager.getInstance().getMeals();
-
-
-
-
-
-
+        String beef = menu.get(0).getBeef();
+        String fish = menu.get(0).getFish();
+        String vegetarian = menu.get(0).getVegetarian();
 
 
+        //CREATE OBJ OF DAYMENU
+        for(int x = 0; x < meals.size();x++) {
 
+            if(beef.equals(meals.get(x).getName())){
+                String calorias = meals.get(x).getCals();
+                String hidratos = meals.get(x).getCarbs();
+                String description = meals.get(x).getDescription();
+                String tipo = meals.get(x).getDish();
+                String imagem = meals.get(x).getImg();
+                String lipidos = meals.get(x).getLip();
+                String nome = meals.get(x).getName();
+                String proteinas = meals.get(x).getProt();
 
+                beefMenu = new Meal(calorias,hidratos,description,tipo,imagem,lipidos,nome,proteinas);
+            }
+            if(meals.get(x).getName().equals(fish)){
 
+                String calorias = meals.get(x).getCals();
+                String hidratos = meals.get(x).getCarbs();
+                String description = meals.get(x).getDescription();
+                String tipo = meals.get(x).getDish();
+                String imagem = meals.get(x).getImg();
+                String lipidos = meals.get(x).getLip();
+                String nome = meals.get(x).getName();
+                String proteinas = meals.get(x).getProt();
 
+                fishMenu = new Meal(calorias,hidratos,description,tipo,imagem,lipidos,nome,proteinas);
+            }
 
+            if(meals.get(x).getName().equals(vegetarian)){
 
+                String calorias = meals.get(x).getCals();
+                String hidratos = meals.get(x).getCarbs();
+                String description = meals.get(x).getDescription();
+                String tipo = meals.get(x).getDish();
+                String imagem = meals.get(x).getImg();
+                String lipidos = meals.get(x).getLip();
+                String nome = meals.get(x).getName();
+                String proteinas = meals.get(x).getProt();
+
+                vegetarianMenu = new Meal(calorias,hidratos,description,tipo,imagem,lipidos,nome,proteinas);
+            }
+        }
 
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -90,12 +127,25 @@ public class MealActivity extends AppCompatActivity {
                     }
                 });
 
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
 
+
+        editor.putString("MeatName", beefMenu.getName());
+        editor.putString("FishName", fishMenu.getName());
+        editor.putString("VeganName", vegetarianMenu.getName());
+        editor.putString("MeatPhoto", beefMenu.getImg());
+        editor.putString("FishPhoto", fishMenu.getImg());
+        editor.putString("VeganPhoto", vegetarianMenu.getImg());
+
+        editor.commit();
 
 
 
 
     }
+
+
 
     public void setupViewPager(ViewPager upViewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -105,4 +155,6 @@ public class MealActivity extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
     }
+
+
 }
