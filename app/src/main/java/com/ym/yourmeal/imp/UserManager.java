@@ -1,12 +1,11 @@
 package com.ym.yourmeal.imp;
 
-import com.ym.yourmeal.inter.IUser;
+import com.ym.yourmeal.inter.iUser;
 import com.ym.yourmeal.models.User;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 
-public class UserManager implements IUser {
+public class UserManager implements iUser {
 
 
 

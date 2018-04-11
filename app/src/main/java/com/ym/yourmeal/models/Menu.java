@@ -1,44 +1,42 @@
 package com.ym.yourmeal.models;
 
-/**
- * Created by Andre Gouveia on 10/04/2018.
- */
 
 public class Menu {
 
-    public Meal beef;
-    public Meal fish;
-    public Meal vegan;
+    public String beef;
+    public String fish;
+    public String vegetarian;
 
-
-    public Menu(Meal beef, Meal fish, Meal vegan) {
+    public Menu(String beef, String fish, String vegetarian) {
         this.beef = beef;
         this.fish = fish;
-        this.vegan = vegan;
+        this.vegetarian = vegetarian;
     }
 
-    public void setBeef(Meal beef) {
+
+    public void setBeef(String beef) {
         this.beef = beef;
     }
 
-    public void setFish(Meal fish) {
+    public void setFish(String fish) {
         this.fish = fish;
     }
 
-    public void setVegan(Meal vegan) {
-        this.vegan = vegan;
+    public void setVegetarian(String vegetarian) {
+        this.vegetarian = vegetarian;
     }
 
-    public Meal getBeef() {
+    public String getBeef() {
+
         return beef;
     }
 
-    public Meal getFish() {
+    public String getFish() {
         return fish;
     }
 
-    public Meal getVegan() {
-        return vegan;
+    public String getVegetarian() {
+        return vegetarian;
     }
 }
 

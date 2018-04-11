@@ -24,6 +24,11 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.ym.yourmeal.models.Meal;
+import com.ym.yourmeal.models.User;
+
+import java.util.ArrayList;
+
 public class MealActivity extends AppCompatActivity {
 
     private  SectionsPageAdapter sectionsPageAdapter;
@@ -45,6 +50,24 @@ public class MealActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
+
+
+
+        //ArrayList<Menu> menu = com.ym.yourmeal.imp.MealManager.getInstance().getMeals();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
