@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class VeganFragment extends Fragment {
         SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
         String nameVegan= sharedPref.getString("VeganName","");
         String imgVeganBD= sharedPref.getString("VeganPhoto","");
+
+        Log.d("user","Log: " + imgVeganBD);
 
         imgVegan = (ImageView) view.findViewById(R.id.imgVeganMeal);
         Picasso.with(getContext()).load(imgVeganBD).into(imgVegan);

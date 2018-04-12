@@ -27,7 +27,7 @@ public class FishFragment extends Fragment {
         String imgPeixeBD= sharedPref.getString("FishPhoto","");
 
         imgPeixe = (ImageView) view.findViewById(R.id.imgPeixeMeal);
-        Picasso.with(getContext()).load(imgPeixeBD).into(imgPeixe);
+//        Picasso.with(getContext()).load(imgPeixeBD).into(imgPeixe);
 
         txtPeixeNome = (TextView) view.findViewById(R.id.txtPeixeNome);
         txtPeixeNome.setText(nameFish);

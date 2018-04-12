@@ -128,7 +128,7 @@ public class MealActivity extends AppCompatActivity {
                     }
                 });
 
-        SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
+       /* SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
         Intent i = getIntent();
@@ -144,7 +144,7 @@ public class MealActivity extends AppCompatActivity {
         editor.putString("FishPhoto", fishMenu.getImg());
         editor.putString("VeganPhoto", vegetarianMenu.getImg());
         editor.putString("UserLogado",userLogado);
-        editor.commit();
+        editor.commit();*/
 
 
 
@@ -161,5 +161,24 @@ public class MealActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        userLogado= LoginActivity.userLogado;
+
+        editor.putString("MeatName", beefMenu.getName());
+        editor.putString("FishName", fishMenu.getName());
+        editor.putString("VeganName", vegetarianMenu.getName());
+        editor.putString("MeatPhoto", beefMenu.getImg());
+        editor.putString("FishPhoto", fishMenu.getImg());
+        editor.putString("VeganPhoto", vegetarianMenu.getImg());
+        editor.putString("UserLogado",userLogado);
+        editor.commit();
+
+
+    }
 }

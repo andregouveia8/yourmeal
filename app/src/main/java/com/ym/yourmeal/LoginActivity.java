@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     EditText txtemail, txtpassword;
     String email, password;
+    static String  userLogado;
 
 
 
@@ -60,31 +61,19 @@ public class LoginActivity extends AppCompatActivity {
                         if(userID.equals(users.get(x).getId())){
                             if(users.get(x).getType().equals("utilizador")){
 
-                                String userLogado = mAuth.getCurrentUser().getEmail();
-
-
+                                userLogado = mAuth.getCurrentUser().getEmail();
 
                                 Intent iUser = new Intent(getApplicationContext(), MealActivity.class);
-                                iUser.putExtra("email",userLogado);
                                 startActivity(iUser);
 
                             }else if(users.get(x).getType().equals("administrador")){
-
                                 Log.d("userID",users.get(x).getType());
                                 Intent iFunc = new Intent(getApplicationContext(), EmployeeActivity.class);
                                 startActivity(iFunc);
-
                             }
                         }
-
-
-
                     }
-
                     Log.d("userID",userID);
-
-
-
                 } else {
 
                 }

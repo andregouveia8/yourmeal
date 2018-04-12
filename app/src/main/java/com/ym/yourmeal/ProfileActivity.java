@@ -60,33 +60,6 @@ private ImageView photo;
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        ArrayList<User> users = com.ym.yourmeal.imp.UserManager.getInstance().getUsers();
-
-        SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
-        String userEmail= sharedPref.getString("UserLogado","");
-
-        for(int x = 0; x < users.size(); x++){
-            if(userEmail.equals(users.get(x).getEmail())){
-                name = (TextView) findViewById(R.id.txtNomePerfil);
-                number = (TextView) findViewById(R.id.txtUsername);
-                photo = (ImageView) findViewById(R.id.imgPerfil);
-
-                String email = users.get(x).getEmail();
-
-                String[] parts = email.split(Pattern.quote("@"));
-
-                name.setText(users.get(x).getName());
-                number.setText(parts[0]);
-                Picasso.with(this).load(users.get(x).getImg()).into(photo);
-
-            }
-        }
-
-
-
-
-
-
 
 
         //LOGOUT
@@ -118,7 +91,32 @@ private ImageView photo;
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        ArrayList<User> users = com.ym.yourmeal.imp.UserManager.getInstance().getUsers();
+        android.util.Log.d("user",String.valueOf(users.size()) );
 
+        SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
+        String userEmail= sharedPref.getString("UserLogado","");
 
+        for(int x = 0; x < users.size(); x++){
+            if(userEmail.equals(users.get(x).getEmail())){
+                name = (TextView) findViewById(R.id.txtNomePerfil);
+                number = (TextView) findViewById(R.id.txtUsername);
+                photo = (ImageView) findViewById(R.id.imgPerfil);
+
+                String email = users.get(x).getEmail();
+
+                String[] parts = email.split(Pattern.quote("@"));
+
+                name.setText(users.get(x).getName());
+                number.setText(parts[0]);
+                Picasso.get().load(users.get(x).getImg()).into(photo);
+
+            }
+        }
+
+    }
 }

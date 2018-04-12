@@ -31,7 +31,7 @@ public class MeatFragment extends Fragment {
         String imgCarneBD= sharedPref.getString("MeatPhoto","");
 
         imgCarne = (ImageView) view.findViewById(R.id.imgCarneMeal);
-        Picasso.with(getContext()).load(imgCarneBD).into(imgCarne);
+        //Picasso.with(getContext()).load(imgCarneBD).into(imgCarne);
 
         txtCarneNome = (TextView) view.findViewById(R.id.txtCarneNome);
         txtCarneNome.setText(nameMeat);
