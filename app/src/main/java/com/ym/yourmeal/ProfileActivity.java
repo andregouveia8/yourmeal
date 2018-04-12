@@ -113,7 +113,7 @@ private ImageView photo;
 
                 name.setText(users.get(x).getName());
                 number.setText(parts[0]);
-                Picasso.get().load(users.get(x).getImg()).into(photo);
+                //Picasso.get().load(users.get(x).getImg()).into(photo);
 
             }
         }

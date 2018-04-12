@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ym.yourmeal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/favicon"
@@ -32,9 +34,9 @@
         <activity
             android:name=".NoReservationActivity"
             android:label="@string/title_activity_no_reservation" />
-        <activity android:name=".ChangeProfileActivity"></activity>
+        <activity android:name=".ChangeProfileActivity" />
+        <activity android:name=".PopupInfo"
+android:theme="@style/AppTheme.Custom"></activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

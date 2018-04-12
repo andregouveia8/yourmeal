@@ -27,13 +27,13 @@ public class MealActivity extends AppCompatActivity {
     private  SectionsPageAdapter sectionsPageAdapter;
     private ViewPager viewPager;
     public static  Meal beefMenu;
-    public Meal fishMenu;
-    public Meal vegetarianMenu;
+    public static  Meal fishMenu;
+    public static  Meal veganMenu;
     String nomeCarne;
     String nomePeixe;
     String nomeVegan;
     String userLogado;
-
+    public static String btnClick;
 
 
 
@@ -103,7 +103,7 @@ public class MealActivity extends AppCompatActivity {
                 String nome = meals.get(x).getName();
                 String proteinas = meals.get(x).getProt();
 
-                vegetarianMenu = new Meal(calorias,hidratos,description,tipo,imagem,lipidos,nome,proteinas);
+                veganMenu = new Meal(calorias,hidratos,description,tipo,imagem,lipidos,nome,proteinas);
             }
         }
 
@@ -127,28 +127,6 @@ public class MealActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-
-       /* SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-
-        Intent i = getIntent();
-        userLogado = i.getStringExtra("email");
-
-        Log.d("Meat", "User em MA: " + userLogado);
-
-
-        editor.putString("MeatName", beefMenu.getName());
-        editor.putString("FishName", fishMenu.getName());
-        editor.putString("VeganName", vegetarianMenu.getName());
-        editor.putString("MeatPhoto", beefMenu.getImg());
-        editor.putString("FishPhoto", fishMenu.getImg());
-        editor.putString("VeganPhoto", vegetarianMenu.getImg());
-        editor.putString("UserLogado",userLogado);
-        editor.commit();*/
-
-
-
-
     }
 
 
@@ -159,26 +137,5 @@ public class MealActivity extends AppCompatActivity {
         adapter.addFragment(new FishFragment(), "PEIXE");
         adapter.addFragment(new VeganFragment(), "VEGAN");
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        SharedPreferences sharedPref = getSharedPreferences("yourmeal", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-
-        userLogado= LoginActivity.userLogado;
-
-        editor.putString("MeatName", beefMenu.getName());
-        editor.putString("FishName", fishMenu.getName());
-        editor.putString("VeganName", vegetarianMenu.getName());
-        editor.putString("MeatPhoto", beefMenu.getImg());
-        editor.putString("FishPhoto", fishMenu.getImg());
-        editor.putString("VeganPhoto", vegetarianMenu.getImg());
-        editor.putString("UserLogado",userLogado);
-        editor.commit();
-
-
     }
 }

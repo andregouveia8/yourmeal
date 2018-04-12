@@ -10,4 +10,5 @@
     <color name="MarromColor2">#6d595b</color>
     <color name="MarromColor3">#918384</color>
     <color name="BlackColor">#000000</color>
+    <color name="noColor">#00000000</color>
 </resources>

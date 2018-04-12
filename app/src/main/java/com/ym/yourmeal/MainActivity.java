@@ -1,6 +1,7 @@
 package com.ym.yourmeal;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,17 +26,51 @@ import com.ym.yourmeal.models.Menu;
 import com.ym.yourmeal.models.Reservation;
 import com.ym.yourmeal.models.User;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     ImageView img;
+    public static String diadasemana;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
 
         img = findViewById(R.id.imgLoading);
 
+        Date currentTime = Calendar.getInstance().getTime();
+        String [] parts = currentTime.toString().split(" ");
+        String dia = parts[0];
+
+
+        if(dia.equals("Mon")){
+            diadasemana = dia;
+        }
+        if(dia.equals("Tue")){
+            diadasemana = dia;
+        }
+        if(dia.equals("Wed")){
+            diadasemana = dia;
+        }
+        if(dia.equals("Thu")){
+            diadasemana = "ASFSDGFGS";
+
+            Log.d("ee","Entrei no dia " + diadasemana);
+        }
+        if(dia.equals("Fri")){
+            diadasemana = dia;
+        }
+        if(dia.equals("Sat")){
+            diadasemana = dia;
+        }
+        if(dia.equals("Sun")){
+            diadasemana = dia;
+        }
 
         //READ DATABASE
         FirebaseDatabase db = FirebaseDatabase.getInstance();
