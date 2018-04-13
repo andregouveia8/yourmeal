@@ -5,12 +5,31 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.ym.yourmeal.imp.MenuManager;
+import com.ym.yourmeal.imp.ReservationManager;
+import com.ym.yourmeal.models.Meal;
+import com.ym.yourmeal.models.Reservation;
+
+import java.util.ArrayList;
 
 public class ReservationActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+    private  TextView mTextMessage;
+    String user;
+    //Referencia à base de dados
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference resRef = database.getReference("reservations");
+    ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
+    ArrayList<String> keys = ReservationManager.getInstance().getKeys();
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,10 +57,66 @@ public class ReservationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
+        user = LoginActivity.userLogado;
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
+        final Button btnTrocarReseva = findViewById(R.id.btnTrocarReserva);
+        btnTrocarReseva.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                for (int j=0; j<keys.size();j++){
+                    for (int i = 0; i< reserves.size(); i++){
+                        String email = reserves.get(i).getEmail();
+                        if (email.equals(user)){
+                            String key = keys.get(i);
+                            resRef.child(key).removeValue();
+                        }
+
+                    }
+                }
+
+                Intent i = new Intent(getApplicationContext(), MealActivity.class);
+                startActivity(i);
+
+            }
+        });
+
+
+
+
+
+
+
+
+        final Button btnCancelarReserva = findViewById(R.id.btnCancelarReserva);
+        btnCancelarReserva.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("l","entrei");
+
+                Log.d("l",user);
+
+                for (int j=0; j<keys.size();j++){
+                    for (int i = 0; i< reserves.size(); i++){
+                        String email = reserves.get(i).getEmail();
+                        Log.d("l","email chico: " + email);
+                        if (email.equals(user)){
+                            String key = keys.get(i);
+                            resRef.child(key).removeValue();
+                        }
+
+                    }
+                }
+
+            }
+        });
+
+
     }
+
+
 
 }

@@ -14,14 +14,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.ym.yourmeal.imp.MenuManager;
 import com.ym.yourmeal.models.Meal;
+import com.ym.yourmeal.models.Menu;
+import com.ym.yourmeal.models.Reservation;
+
+import java.util.ArrayList;
 
 public class FishFragment extends Fragment {
     TextView txtPeixeNome, dataCarne;
     ImageView imgPeixe;
     Meal fish;
     String dia;
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    ArrayList<Menu> menus;
+    DatabaseReference myRef = db.getReference("reservations");
 
     @Nullable
     @Override
@@ -51,6 +60,23 @@ public class FishFragment extends Fragment {
                 Intent i = new Intent(getActivity().getApplicationContext(),PopupInfo.class);
                 i.putExtra("prato", "peixe");
                 startActivity(i);
+
+            }
+        });
+
+        final Button btnReservarPeixe = view.findViewById(R.id.buttonReservarPeixe);
+        btnReservarPeixe.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String user = LoginActivity.userLogado;
+                menus = MenuManager.getInstance().getMenus();
+
+                //Adicionar reservas na base de dados
+
+                String key = myRef.push().getKey();
+
+                Reservation reservation= new Reservation ("peixe", user, menus.get(0).fish);
+                myRef.child(key).setValue(reservation);
 
             }
         });

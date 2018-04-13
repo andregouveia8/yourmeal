@@ -15,8 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.squareup.picasso.Picasso;
 import com.ym.yourmeal.models.User;
 
 import java.util.ArrayList;
@@ -114,6 +114,10 @@ private ImageView photo;
                 name.setText(users.get(x).getName());
                 number.setText(parts[0]);
                 //Picasso.get().load(users.get(x).getImg()).into(photo);
+
+
+                Glide.with(this).load(users.get(x).getImg()).into(photo);
+
 
             }
         }

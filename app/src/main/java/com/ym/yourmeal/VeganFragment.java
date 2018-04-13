@@ -15,14 +15,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.ym.yourmeal.imp.MenuManager;
 import com.ym.yourmeal.models.Meal;
+import com.ym.yourmeal.models.Menu;
+import com.ym.yourmeal.models.Reservation;
+
+import java.util.ArrayList;
 
 public class VeganFragment extends Fragment {
 
     TextView txtVeganNome;
     ImageView imgVegan;
     Meal vegan;
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    ArrayList<Menu> menus;
+    DatabaseReference myRef = db.getReference("reservations");
 
     @Nullable
     @Override
@@ -45,6 +54,21 @@ public class VeganFragment extends Fragment {
                 Intent i = new Intent(getActivity().getApplicationContext(),PopupInfo.class);
                 i.putExtra("prato", "vegan");
                 startActivity(i);
+
+            }
+        });
+
+        final Button btnReservarVegan = view.findViewById(R.id.buttonReservarVegan);
+        btnReservarVegan.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String user = LoginActivity.userLogado;
+                menus = MenuManager.getInstance().getMenus();
+
+                String key = myRef.push().getKey();
+
+                Reservation reservation= new Reservation ("vegan", user, menus.get(0).vegetarian);
+                myRef.child(key).setValue(reservation);
 
             }
         });

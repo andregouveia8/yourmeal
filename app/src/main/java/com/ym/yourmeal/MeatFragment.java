@@ -14,14 +14,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.MealActivity;
 
+import com.ym.yourmeal.imp.MenuManager;
 import com.ym.yourmeal.models.Meal;
+import com.ym.yourmeal.models.Menu;
+import com.ym.yourmeal.models.Reservation;
+import com.ym.yourmeal.models.User;
+
+import java.util.ArrayList;
 
 public class MeatFragment extends Fragment {
     TextView txtCarneNome;
     ImageView imgCarne;
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    ArrayList<Menu> menus;
+    DatabaseReference myRef = db.getReference("reservations");
 
     Meal beef;
 
@@ -49,6 +59,18 @@ public class MeatFragment extends Fragment {
         final Button btnReservarCarne = view.findViewById(R.id.buttonReservarCarne);
         btnReservarCarne.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                String user = LoginActivity.userLogado;
+                menus = MenuManager.getInstance().getMenus();
+
+                //Adicionar reservas na base de dados
+
+                String key = myRef.push().getKey();
+
+                Log.d("e", menus.get(0).beef);
+
+                Reservation reservation= new Reservation ("carne", user, menus.get(0).beef);
+                myRef.child(key).setValue(reservation);
 
             }
         });
