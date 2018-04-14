@@ -80,6 +80,8 @@ public class FishFragment extends Fragment {
                 Reservation reservation= new Reservation ("peixe", user, menus.get(0).fish);
                 myRef.child(key).setValue(reservation);
 
+                //TODO ACABAR O ATUALIZAR ESTATISTICAS PEIXE
+
                 Intent i = new Intent(getContext().getApplicationContext(),PopupCheckReservation.class);
                 startActivity(i);
 

@@ -91,9 +91,10 @@ public class MeatFragment extends Fragment {
 
                         beef = beef + 1;
 
+                        //TODO ACABAR O ATUALIZAR ESTATISTICAS CARNE
                         db.getReference("users").child("1").child("beef").setValue(beef);
 
-                        
+
 
                     }
                 }

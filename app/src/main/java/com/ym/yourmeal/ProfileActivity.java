@@ -114,6 +114,7 @@ public class ProfileActivity extends AppCompatActivity {
         ArrayList<User> users = com.ym.yourmeal.imp.UserManager.getInstance().getUsers();
 
 
+        //TODO REINICIAR ESTATISTICAS
 
 
         name = (TextView) findViewById(R.id.txtNomePerfil);

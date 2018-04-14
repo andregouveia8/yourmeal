@@ -71,6 +71,8 @@ public class VeganFragment extends Fragment {
                 Reservation reservation= new Reservation ("vegan", user, menus.get(0).vegetarian);
                 myRef.child(key).setValue(reservation);
 
+                //TODO ACABAR O ATUALIZAR ESTATISTICAS VEGAN
+
                 Intent i = new Intent(getContext().getApplicationContext(),PopupCheckReservation.class);
                 startActivity(i);
 
