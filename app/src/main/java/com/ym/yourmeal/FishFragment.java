@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.imp.MenuManager;
@@ -41,7 +42,8 @@ public class FishFragment extends Fragment {
         dia = MainActivity.diadasemana;
 
         imgPeixe = (ImageView) view.findViewById(R.id.imgPeixeMeal);
-        //Picasso.with(getContext()).load(imgPeixeBD).into(imgPeixe);
+
+        Glide.with(this).load(fish.getImg()).into(imgPeixe);
 
         txtPeixeNome = (TextView) view.findViewById(R.id.txtPeixeNome);
         txtPeixeNome.setText(fish.getName());
@@ -77,6 +79,9 @@ public class FishFragment extends Fragment {
 
                 Reservation reservation= new Reservation ("peixe", user, menus.get(0).fish);
                 myRef.child(key).setValue(reservation);
+
+                Intent i = new Intent(getContext().getApplicationContext(),PopupCheckReservation.class);
+                startActivity(i);
 
             }
         });

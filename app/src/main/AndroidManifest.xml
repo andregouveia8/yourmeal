@@ -35,8 +35,14 @@
             android:name=".NoReservationActivity"
             android:label="@string/title_activity_no_reservation" />
         <activity android:name=".ChangeProfileActivity" />
-        <activity android:name=".PopupInfo"
-android:theme="@style/AppTheme.Custom"></activity>
+        <activity
+            android:name=".PopupInfo"
+            android:theme="@style/AppTheme.Custom" />
+        <activity
+            android:name=".PopupCheckReservation"
+            android:theme="@style/AppTheme.Custom" />
+        <activity android:name=".CancelReservationPopup"
+            android:theme="@style/AppTheme.Custom"></activity>
     </application>
 
 </manifest>

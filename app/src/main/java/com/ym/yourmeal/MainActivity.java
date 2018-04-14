@@ -177,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
                     String name = postSnapshot.child("name").getValue().toString();
                     String dish = postSnapshot.child("dish").getValue().toString();
 
+                    String key = postSnapshot.getKey().toString();
+                    //Enviar o string das keys
+                    ReservationManager.getInstance().setKeys(key);
+
 
                     //Criar objeto meal
                     Reservation reservation = new Reservation(dish, email, name);
@@ -220,4 +224,7 @@ public class MainActivity extends AppCompatActivity {
         myThread.start();
 
     }
+
+
+
 }

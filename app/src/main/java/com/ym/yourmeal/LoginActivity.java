@@ -19,6 +19,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.ym.yourmeal.imp.MealManager;
+import com.ym.yourmeal.imp.ReservationManager;
 import com.ym.yourmeal.models.Meal;
 import com.ym.yourmeal.models.Menu;
 import com.ym.yourmeal.models.Reservation;
@@ -36,8 +40,6 @@ public class LoginActivity extends AppCompatActivity {
     static String  userLogado;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
         txtpassword = findViewById(R.id.txtPassword_Nova);
 
         mAuth = FirebaseAuth.getInstance();
+
+
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -66,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
                             if(users.get(x).getType().equals("utilizador")){
 
                                 userLogado = mAuth.getCurrentUser().getEmail();
-
                                 Intent iUser = new Intent(getApplicationContext(), MealActivity.class);
                                 startActivity(iUser);
 

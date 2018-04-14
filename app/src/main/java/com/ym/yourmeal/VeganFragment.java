@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.imp.MenuManager;
@@ -40,10 +41,10 @@ public class VeganFragment extends Fragment {
         vegan = MealActivity.veganMenu;
 
         imgVegan = (ImageView) view.findViewById(R.id.imgVeganMeal);
-        //Picasso.with(getContext()).load(imgVeganBD).into(imgVegan);
-
         txtVeganNome = (TextView) view.findViewById(R.id.txtVeganNome);
+
         txtVeganNome.setText(vegan.getName());
+        Glide.with(this).load(vegan.getImg()).into(imgVegan);
 
 
 
@@ -69,6 +70,9 @@ public class VeganFragment extends Fragment {
 
                 Reservation reservation= new Reservation ("vegan", user, menus.get(0).vegetarian);
                 myRef.child(key).setValue(reservation);
+
+                Intent i = new Intent(getContext().getApplicationContext(),PopupCheckReservation.class);
+                startActivity(i);
 
             }
         });

@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class NoReservationActivity extends AppCompatActivity {
@@ -24,10 +26,12 @@ public class NoReservationActivity extends AppCompatActivity {
                 case R.id.meal_menu:
                     Intent intentMeal = new Intent(getApplicationContext(),MealActivity.class);
                     startActivity(intentMeal);
+                    finish();
                     break;
                 case R.id.profile_menu:
                     Intent intentProfile = new Intent(getApplicationContext(),ProfileActivity.class);
                     startActivity(intentProfile);
+                    finish();
                     break;
             }
             return false;
@@ -41,7 +45,22 @@ public class NoReservationActivity extends AppCompatActivity {
 
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Button b = (Button) findViewById(R.id.btnReservarReserva);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),MealActivity.class);
+                finish();
+            }
+        });
+
+
+
+
+
     }
 
 }

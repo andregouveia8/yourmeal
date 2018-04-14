@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+
+import com.ym.yourmeal.imp.ReservationManager;
 import com.ym.yourmeal.models.Menu;
 
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.ym.yourmeal.imp.MealManager;
 import com.ym.yourmeal.imp.MenuManager;
 import com.ym.yourmeal.models.Meal;
+import com.ym.yourmeal.models.Reservation;
 
 import java.util.ArrayList;
 
@@ -34,6 +37,8 @@ public class MealActivity extends AppCompatActivity {
     String nomeVegan;
     String userLogado;
     public static String btnClick;
+    boolean check;
+    public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
 
 
 
@@ -50,7 +55,7 @@ public class MealActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsMeal);
         tabLayout.setupWithViewPager(viewPager);
 
-
+        userLogado = LoginActivity.userLogado;
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
 
@@ -114,14 +119,30 @@ public class MealActivity extends AppCompatActivity {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.reservation_menu:
-                                Intent intentReservation = new Intent(getApplicationContext(),NoReservationActivity.class);
-                                startActivity(intentReservation);
+                                for (int i = 0; i< reserves.size(); i++){
+                                    String email = reserves.get(i).getEmail();
+                                    if (email.equals(userLogado)){
+                                        check = true;
+                                    }else{
+                                        check = false;
+                                    }
+                                }
+                                if(check){
+                                    Intent intentReservation = new Intent(getApplicationContext(),ReservationActivity.class);
+                                    startActivity(intentReservation);
+                                    finish();
+                                }else{
+                                    Intent intentReservation = new Intent(getApplicationContext(),NoReservationActivity.class);
+                                    startActivity(intentReservation);
+                                    finish();
+                                }
                                 break;
                             case R.id.meal_menu:
                                 break;
                             case R.id.profile_menu:
                                 Intent intentProfile = new Intent(getApplicationContext(),ProfileActivity.class);
                                 startActivity(intentProfile);
+                                finish();
                                 break;
                         }
                         return true;

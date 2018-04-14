@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/MarromColorOpacity"
+    android:orientation="vertical"
+    tools:context=".PopupInfo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/WhiteColor"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="363dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:fontFamily="@font/dosisregular"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="INFORMAÇÃO"
+            android:textColor="@color/MarromColor1"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnCloseCheckPopUp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/buttonstyle4"
+            android:fontFamily="@font/worksanslight"
+            android:paddingRight="10dp"
+            android:text="X"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="161dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/iconreservationpop" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="301dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/worksanslight"
+            android:paddingTop="10dp"
+            android:text="Levante a sua refeição até as 14:30h!"
+            android:textAlignment="center"
+            android:textColor="@color/WhiteColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="303dp"
+
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/worksanslight"
+            android:text="Bom Apetite!"
+            android:textAlignment="center"
+            android:textColor="@color/WhiteColor"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSimPopUpCheck"
+                android:layout_width="100dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle3"
+                android:fontFamily="@font/worksanssemibold"
+                android:text="OK"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
