@@ -19,8 +19,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.imp.MealManager;
 import com.ym.yourmeal.imp.MenuManager;
 import com.ym.yourmeal.imp.ReservationManager;
+import com.ym.yourmeal.imp.UserManager;
 import com.ym.yourmeal.models.Meal;
 import com.ym.yourmeal.models.Reservation;
+import com.ym.yourmeal.models.User;
 
 import java.util.ArrayList;
 
@@ -30,13 +32,17 @@ public class ReservationActivity extends AppCompatActivity {
     String user;
     Meal mealReserva;
     ImageView photo;
+
+    String prato;
     //Referencia à base de dados
     TextView txtReservaNome, txtReservaData;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference resRef = database.getReference("reservations");
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    DatabaseReference resRef = db.getReference("reservations");
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
     public static ArrayList<String> keys = ReservationManager.getInstance().getKeys();
+    public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
     public static ArrayList<Meal> meals = MealManager.getInstance().getMeals();
+    public static ArrayList<User> users = UserManager.getInstance().getUsers();
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -108,6 +114,33 @@ public class ReservationActivity extends AppCompatActivity {
                     if (email.equals(user)){
                         String key = keys.get(i);
                         resRef.child(key).removeValue();
+
+                        prato = reserves.get(i).dish;
+                        for (int x = 0; x < users.size(); x++){
+                            if(user.equals(users.get(x).getEmail())){
+                                String keyUser = keysUsers.get(x);
+
+                                if(prato.equals("carne")){
+                                    int beef = Integer.parseInt(users.get(x).getBeef().toString());
+                                    beef = beef - 1;
+                                    db.getReference("users").child(keyUser).child("beef").setValue(beef);
+                                } else
+
+                                if(prato.equals("peixe")){
+                                    int fish = Integer.parseInt(users.get(x).getFish().toString());
+                                    fish= fish- 1;
+                                    db.getReference("users").child(keyUser).child("fish").setValue(fish);
+                                }else
+
+                                if(prato.equals("vegetarian")){
+                                    int vegan = Integer.parseInt(users.get(x).getVegetarian().toString());
+                                    vegan = vegan - 1;
+                                    db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
+                                }
+
+
+                            }
+                        }
                     }
 
                 }

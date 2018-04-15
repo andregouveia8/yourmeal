@@ -19,20 +19,32 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.imp.MenuManager;
+import com.ym.yourmeal.imp.ReservationManager;
+import com.ym.yourmeal.imp.UserManager;
 import com.ym.yourmeal.models.Meal;
 import com.ym.yourmeal.models.Menu;
 import com.ym.yourmeal.models.Reservation;
+import com.ym.yourmeal.models.User;
 
 import java.util.ArrayList;
 
 public class VeganFragment extends Fragment {
 
-    TextView txtVeganNome;
+    TextView txtVeganNome, txtDataVegan;
     ImageView imgVegan;
     Meal vegan;
+    String day = MainActivity.diadasemana;
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     ArrayList<Menu> menus;
     DatabaseReference myRef = db.getReference("reservations");
+    String userLogado;
+    boolean check;
+    Button btnVegan;
+    public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
+
+
+    public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
+    ArrayList<User> users = UserManager.getInstance().getUsers();
 
     @Nullable
     @Override
@@ -47,6 +59,24 @@ public class VeganFragment extends Fragment {
         Glide.with(this).load(vegan.getImg()).into(imgVegan);
 
 
+        for (int i = 0; i< reserves.size(); i++){
+            String email = reserves.get(i).getEmail();
+            if (email.equals(userLogado)){
+                check = true;
+            }else{
+                check = false;
+            }
+        }
+
+        btnVegan = (Button)view.findViewById(R.id.buttonReservarVegan);
+
+        if (check){
+            btnVegan.setVisibility(View.GONE);
+        }
+
+        txtDataVegan = (TextView) view.findViewById(R.id.dataVegan);
+
+        txtDataVegan.setText(day);
 
         final Button buttonInfoVegan = view.findViewById(R.id.buttonInfoVegan);
         buttonInfoVegan.setOnClickListener(new View.OnClickListener() {
@@ -68,10 +98,21 @@ public class VeganFragment extends Fragment {
 
                 String key = myRef.push().getKey();
 
-                Reservation reservation= new Reservation ("vegan", user, menus.get(0).vegetarian);
+                Reservation reservation= new Reservation ("vegatarian", user, menus.get(0).vegetarian);
                 myRef.child(key).setValue(reservation);
 
-                //TODO ACABAR O ATUALIZAR ESTATISTICAS VEGAN
+                for (int x = 0; x < users.size(); x++){
+                    if(user.equals(users.get(x).getEmail())){
+                        int vegan = Integer.parseInt(users.get(x).getVegetarian().toString());
+
+                        vegan = vegan + 1;
+
+                        String keyUser = keysUsers.get(x);
+
+                        db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
+
+                    }
+                }
 
                 Intent i = new Intent(getContext().getApplicationContext(),PopupCheckReservation.class);
                 startActivity(i);

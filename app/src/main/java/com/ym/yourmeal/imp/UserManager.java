@@ -10,6 +10,7 @@ public class UserManager implements iUser {
 
 
     public ArrayList<User> users = new ArrayList<User>();
+    public ArrayList<String> keys = new ArrayList <String>();
 
     static UserManager userManager = null;
 
@@ -28,4 +29,14 @@ public class UserManager implements iUser {
     public ArrayList<User> getUsers(){
         return users;
     }
+
+    @Override
+    public void setKeys(String key) {
+        keys.add(key);
+    }
+
+    public ArrayList <String> getKeys(){
+        return keys;
+    }
+
 }

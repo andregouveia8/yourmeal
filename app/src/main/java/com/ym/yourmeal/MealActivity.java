@@ -16,6 +16,8 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ym.yourmeal.imp.MealManager;
@@ -32,11 +34,12 @@ public class MealActivity extends AppCompatActivity {
     public static  Meal beefMenu;
     public static  Meal fishMenu;
     public static  Meal veganMenu;
+    Button btnCarne, btnPeixe, btnVegan;
     String nomeCarne;
     String nomePeixe;
     String nomeVegan;
-    String userLogado;
     public static String btnClick;
+    String userLogado;
     boolean check;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
 
@@ -52,6 +55,7 @@ public class MealActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.containerMeal);
         setupViewPager(viewPager);
 
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsMeal);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -62,6 +66,8 @@ public class MealActivity extends AppCompatActivity {
 
         ArrayList<Menu> menu = MenuManager.getInstance().getMenus();
         ArrayList<Meal> meals = MealManager.getInstance().getMeals();
+
+
 
         String beef = menu.get(0).getBeef();
         String fish = menu.get(0).getFish();

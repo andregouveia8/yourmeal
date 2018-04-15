@@ -18,20 +18,31 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.imp.MenuManager;
+import com.ym.yourmeal.imp.ReservationManager;
+import com.ym.yourmeal.imp.UserManager;
 import com.ym.yourmeal.models.Meal;
 import com.ym.yourmeal.models.Menu;
 import com.ym.yourmeal.models.Reservation;
+import com.ym.yourmeal.models.User;
 
 import java.util.ArrayList;
 
 public class FishFragment extends Fragment {
-    TextView txtPeixeNome, dataCarne;
+    TextView txtPeixeNome, txtDataPeixe;
     ImageView imgPeixe;
+    String day = MainActivity.diadasemana;
     Meal fish;
     String dia;
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     ArrayList<Menu> menus;
     DatabaseReference myRef = db.getReference("reservations");
+    Button btnFish;
+
+    String userLogado;
+    boolean check;
+    public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
+    public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
+    ArrayList<User> users = UserManager.getInstance().getUsers();
 
     @Nullable
     @Override
@@ -48,10 +59,26 @@ public class FishFragment extends Fragment {
         txtPeixeNome = (TextView) view.findViewById(R.id.txtPeixeNome);
         txtPeixeNome.setText(fish.getName());
 
-        dataCarne = (TextView) view.findViewById(R.id.dataCarne);
+        txtDataPeixe = (TextView) view.findViewById(R.id.dataPeixe);
 
-        Log.d("ee","dia é "+ dia);
-        //dataCarne.setText(dia.toString());
+        txtDataPeixe.setText(day);
+
+
+        for (int i = 0; i< reserves.size(); i++){
+            String email = reserves.get(i).getEmail();
+            if (email.equals(userLogado)){
+                check = true;
+            }else{
+                check = false;
+            }
+        }
+
+        btnFish = (Button)view.findViewById(R.id.buttonReservarPeixe);
+
+
+        if (check){
+            btnFish.setVisibility(View.GONE);
+        }
 
 
 
@@ -80,7 +107,19 @@ public class FishFragment extends Fragment {
                 Reservation reservation= new Reservation ("peixe", user, menus.get(0).fish);
                 myRef.child(key).setValue(reservation);
 
-                //TODO ACABAR O ATUALIZAR ESTATISTICAS PEIXE
+                for (int x = 0; x < users.size(); x++){
+                    if(user.equals(users.get(x).getEmail())){
+                        int fish = Integer.parseInt(users.get(x).getFish().toString());
+
+                        fish = fish + 1;
+
+                        String keyUser = keysUsers.get(x);
+
+                        db.getReference("users").child(keyUser).child("fish").setValue(fish);
+
+                    }
+                }
+
 
                 Intent i = new Intent(getContext().getApplicationContext(),PopupCheckReservation.class);
                 startActivity(i);

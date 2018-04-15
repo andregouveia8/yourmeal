@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.MealActivity;
 
 import com.ym.yourmeal.imp.MenuManager;
+import com.ym.yourmeal.imp.ReservationManager;
 import com.ym.yourmeal.imp.UserManager;
 import com.ym.yourmeal.models.Meal;
 import com.ym.yourmeal.models.Menu;
@@ -31,13 +32,20 @@ import java.util.ArrayList;
 
 
 public class MeatFragment extends Fragment {
-    TextView txtCarneNome;
+    TextView txtCarneNome, txtDataCarne;
     ImageView imgCarne;
     String user;
+    String day;
+    Button btnCarne;
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     ArrayList<Menu> menus;
     DatabaseReference myRef = db.getReference("reservations");
+    boolean check;
+    public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
+
+    public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
     ArrayList<User> users = UserManager.getInstance().getUsers();
+    String userLogado = LoginActivity.userLogado;
 
     Meal beef;
 
@@ -48,9 +56,32 @@ public class MeatFragment extends Fragment {
         beef = MealActivity.beefMenu;
         user = LoginActivity.userLogado;
 
+
+        for (int i = 0; i< reserves.size(); i++){
+            String email = reserves.get(i).getEmail();
+            if (email.equals(userLogado)){
+                check = true;
+            }else{
+                check = false;
+            }
+        }
+
+        btnCarne = (Button)view.findViewById(R.id.buttonReservarCarne);
+
+        if (check){
+            btnCarne.setVisibility(View.GONE);
+        }
+
+
+
+
+        day = MainActivity.diadasemana;
         imgCarne  = (ImageView) view.findViewById(R.id.imgCarneMeal);
         txtCarneNome = (TextView) view.findViewById(R.id.txtCarneNome);
 
+        txtDataCarne = (TextView) view.findViewById(R.id.dataCarne);
+
+        txtDataCarne.setText(day);
 
         txtCarneNome.setText(beef.getName());
         Glide.with(this).load(beef.getImg()).into(imgCarne);
@@ -75,8 +106,6 @@ public class MeatFragment extends Fragment {
                 String user = LoginActivity.userLogado;
                 menus = MenuManager.getInstance().getMenus();
 
-                //Adicionar reservas na base de dados
-
                 String key = myRef.push().getKey();
 
                 Log.d("e", menus.get(0).beef);
@@ -91,8 +120,9 @@ public class MeatFragment extends Fragment {
 
                         beef = beef + 1;
 
-                        //TODO ACABAR O ATUALIZAR ESTATISTICAS CARNE
-                        db.getReference("users").child("1").child("beef").setValue(beef);
+                        String keyUser = keysUsers.get(x);
+
+                        db.getReference("users").child(keyUser).child("beef").setValue(beef);
 
 
 

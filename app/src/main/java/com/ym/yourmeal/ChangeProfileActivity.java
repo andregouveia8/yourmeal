@@ -72,19 +72,7 @@ public class ChangeProfileActivity extends AppCompatActivity {
                 pass = findViewById(R.id.txtPassword_Atual);
                 newpass = findViewById(R.id.txtPassword_Nova);
                 confirmpass = findViewById(R.id.txtPassword_Confirm);
-
-
-                /*user.updatePassword(newpass.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d("test", "User password updated.");
-                                }else{
-                                    Log.d("test", "User password not updated.");
-                                }
-                            }
-                        });*/
+                
 
 
             }

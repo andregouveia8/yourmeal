@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.ym.yourmeal.imp.ReservationManager;
 import com.ym.yourmeal.models.Reservation;
 import com.ym.yourmeal.models.User;
@@ -29,13 +30,17 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private TextView name, number;
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
     private ImageView photo;
     private FirebaseAuth mAuth;
     ProgressBar progressBarCarne, progressBarPeixe, progressBarVegan;
 
+    public static ArrayList<String> keysUsers = com.ym.yourmeal.imp.UserManager.getInstance().getKeys();
+    ArrayList<User> users = com.ym.yourmeal.imp.UserManager.getInstance().getUsers();
+
     boolean check;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
-    String userEmail= LoginActivity.userLogado;
+    String userEmail = LoginActivity.userLogado;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,26 +49,26 @@ public class ProfileActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.reservation_menu:
-                    for (int i = 0; i< reserves.size(); i++){
+                    for (int i = 0; i < reserves.size(); i++) {
                         String email = reserves.get(i).getEmail();
-                        if (email.equals(userEmail)){
+                        if (email.equals(userEmail)) {
                             check = true;
-                        }else{
+                        } else {
                             check = false;
                         }
                     }
-                    if(check){
-                        Intent intentReservation = new Intent(getApplicationContext(),ReservationActivity.class);
+                    if (check) {
+                        Intent intentReservation = new Intent(getApplicationContext(), ReservationActivity.class);
                         startActivity(intentReservation);
                         finish();
-                    }else{
-                        Intent intentReservation = new Intent(getApplicationContext(),NoReservationActivity.class);
+                    } else {
+                        Intent intentReservation = new Intent(getApplicationContext(), NoReservationActivity.class);
                         startActivity(intentReservation);
                         finish();
                     }
                     break;
                 case R.id.meal_menu:
-                    Intent intentMeal = new Intent(getApplicationContext(),MealActivity.class);
+                    Intent intentMeal = new Intent(getApplicationContext(), MealActivity.class);
                     startActivity(intentMeal);
                     finish();
                     break;
@@ -85,36 +90,22 @@ public class ProfileActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-
-
-        //LOGOUT
-        mAuth = FirebaseAuth.getInstance();
-        Button btnSair = (Button) findViewById(R.id.btnSairPerfil);
-        btnSair.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                mAuth.signOut();
-                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(i);
-            }
-        });
-        final Button btnEditar = findViewById(R.id.btnEditarPerfil);
-        btnEditar.setOnClickListener(new View.OnClickListener() {
+        final Button resetEstatisticas = findViewById(R.id.btnReiniciarEstatisticas);
+        resetEstatisticas.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                Intent i = new Intent(getApplicationContext(),ChangeProfileActivity.class);
-                startActivity(i);
+                for (int x = 0; x < users.size(); x++) {
+                    if (userEmail.equals(users.get(x).getEmail())) {
+
+                        String keyUser = keysUsers.get(x);
+
+                        db.getReference("users").child(keyUser).child("beef").setValue(0);
+                        db.getReference("users").child(keyUser).child("fish").setValue(0);
+                        db.getReference("users").child(keyUser).child("vegetarian").setValue(0);
+                    }
+                }
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        ArrayList<User> users = com.ym.yourmeal.imp.UserManager.getInstance().getUsers();
-
-
-        //TODO REINICIAR ESTATISTICAS
 
 
         name = (TextView) findViewById(R.id.txtNomePerfil);
@@ -126,18 +117,39 @@ public class ProfileActivity extends AppCompatActivity {
         progressBarPeixe = findViewById(R.id.progressBarPeixe);
         progressBarVegan = findViewById(R.id.progressBarVegan);
 
-        for(int x = 0; x < users.size(); x++){
-            if(userEmail.equals(users.get(x).getEmail())){
+        for (int x = 0; x < users.size(); x++) {
+            if (userEmail.equals(users.get(x).getEmail())) {
 
                 int valorCarne = Integer.parseInt(users.get(x).getBeef());
                 int valorFish = Integer.parseInt(users.get(x).getFish());
                 int valorVegan = Integer.parseInt(users.get(x).getVegetarian());
 
+                int beef = 0;
+                int fish = 0;
+                int vegan = 0;
+
                 int soma = valorCarne + valorFish + valorVegan;
 
-                int beef = valorCarne * 100 / soma;
-                int fish = valorFish * 100 / soma;
-                int vegan = valorVegan * 100 / soma;
+                if(valorCarne <= 0){
+                    beef = 0;
+                    fish = valorFish * 100 / soma;
+                    vegan = valorVegan * 100 / soma;
+                }else if(valorFish <= 0){
+                    beef = valorCarne * 100 / soma;
+                    fish = 0;
+                    vegan = valorVegan * 100 / soma;
+
+                }else if (valorVegan <= 0){
+                    beef = valorCarne * 100 / soma;
+                    fish = valorFish * 100 / soma;
+                    vegan = 0;
+                }else {
+                    beef = valorCarne * 100 / soma;
+                    fish = valorFish * 100 / soma;
+                    vegan = valorVegan * 100 / soma;
+
+                }
+
 
                 progressBarCarne.setProgress(beef);
                 progressBarPeixe.setProgress(fish);
@@ -154,5 +166,25 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }
 
+
+        //LOGOUT
+        mAuth = FirebaseAuth.getInstance();
+        Button btnSair = (Button) findViewById(R.id.btnSairPerfil);
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mAuth.signOut();
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
+        final Button btnEditar = findViewById(R.id.btnEditarPerfil);
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), ChangeProfileActivity.class);
+                startActivity(i);
+            }
+        });
     }
+
 }

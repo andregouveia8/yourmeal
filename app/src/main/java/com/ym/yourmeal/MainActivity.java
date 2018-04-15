@@ -49,27 +49,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(dia.equals("Mon")){
-            diadasemana = dia;
+            diadasemana = "Segunda-Feira";
         }
         if(dia.equals("Tue")){
-            diadasemana = dia;
+            diadasemana = "Terça-Feira";
         }
         if(dia.equals("Wed")){
-            diadasemana = dia;
+            diadasemana = "Quarta-Feira";
         }
         if(dia.equals("Thu")){
-            diadasemana = "ASFSDGFGS";
-
-            Log.d("ee","Entrei no dia " + diadasemana);
+            diadasemana = "Quinta-Feira";
         }
         if(dia.equals("Fri")){
-            diadasemana = dia;
+            diadasemana = "Sexta-Feira";
         }
         if(dia.equals("Sat")){
-            diadasemana = dia;
+            diadasemana = "Sábado";
         }
         if(dia.equals("Sun")){
-            diadasemana = dia;
+            diadasemana = "Domingo";
         }
 
         //READ DATABASE
@@ -92,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
                     String fish = postSnapshot.child("fish").getValue().toString();
                     String vegetarian = postSnapshot.child("vegetarian").getValue().toString();
                     String img = postSnapshot.child("img").getValue().toString();
+
+
+                    String key = postSnapshot.getKey().toString();
+                    //Enviar o string das keys
+                    UserManager.getInstance().setKeys(key);
+
 
                     //Criar objeto
                     User user = new User(email, name, type, id, fish, beef, vegetarian, img );

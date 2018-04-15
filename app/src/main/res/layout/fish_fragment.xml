@@ -35,7 +35,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/data1"
+            android:id="@+id/dataPeixe"
             android:layout_width="match_parent"
             android:layout_height="31dp"
             android:fontFamily="@font/worksanslight"
