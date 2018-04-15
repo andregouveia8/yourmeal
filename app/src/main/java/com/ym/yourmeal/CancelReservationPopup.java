@@ -79,37 +79,35 @@ public class CancelReservationPopup extends AppCompatActivity {
                         prato = reserves.get(i).getDish();
                         Log.d("tag", prato);
 
+                        for(int  x =0; x<users.size();x++){
+                            String emailuser = users.get(x).email;
+                            String keyUser = keysUsers.get(x);
+                            if(emailuser.equals(user)){
+                                String carne = "carne";
+                                String peixe = "peixe";
+                                String vegan = "vegetarian";
+
+                                if(carne.equals(prato)){
+                                    int carneUser = Integer.parseInt(users.get(x).getBeef().toString());
+                                    carneUser = carneUser - 1;
+                                    db.getReference("users").child(keyUser).child("beef").setValue(carneUser);
+                                }
+
+                                if(peixe.equals(prato)){
+                                    int peixeUser = Integer.parseInt(users.get(x).getBeef().toString());
+                                    peixeUser = peixeUser- 1;
+                                    db.getReference("users").child(keyUser).child("fish").setValue(peixeUser);
+                                }
+
+                                if(vegan.equals(prato)){
+                                    int veganUser= Integer.parseInt(users.get(x).getBeef().toString());
+                                    veganUser = veganUser - 1;
+                                    db.getReference("users").child(keyUser).child("vegetarian").setValue(veganUser);
+                                }
+                            }
+                        }
+
                         //TODO VER ESTATISTICAS ERRO AO ATUALIZAR??
-
-//                        for (int x = 0; x < users.size(); x++) {
-//                            Log.d("tag", "users " + users.get(x).getEmail());
-//                            if (user.equals(users.get(x).getEmail())) {
-//                                String keyUser = keysUsers.get(x);
-//                                Log.d("tag", prato);
-//
-//                                if (prato.equals("carne")) {
-//                                    Log.d("tag", " entrei carne");
-//                                    int beef = Integer.parseInt(users.get(x).getBeef().toString());
-//                                    beef = beef - 1;
-//                                    db.getReference("users").child(keyUser).child("beef").setValue(beef);
-//                                } else if (prato.equals("peixe")) {
-//                                    Log.d("tag", " entrei peixe");
-//                                    int fish = Integer.parseInt(users.get(x).getFish().toString());
-//                                    fish = fish - 1;
-//                                    db.getReference("users").child(keyUser).child("fish").setValue(fish);
-//                                } else if (prato.equals("vegetarian")) {
-//
-//                                    Log.d("tag", " entrei vegan");
-//                                    int vegan = Integer.parseInt(users.get(x).getVegetarian().toString());
-//                                    vegan = vegan - 1;
-//                                    db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
-//                                }
-//
-//
-//                            }
-//                        }
-
-
                     }
 
                 }
