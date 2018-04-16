@@ -6,10 +6,11 @@
         <item name="android:statusBarColor">@color/MarromColor3</item>
         <item name="android:colorForeground">@color/WhiteColor</item>
         <item name="android:navigationBarColor">@color/BlackColor</item>
-        <item name="android:textColorPrimary">@color/BackgroundColor</item>
+        <item name="android:textColorPrimary">@color/MarromColor1</item>
         <item name="android:colorBackground">@color/BackgroundColor</item>
         <item name="android:textColorSecondary">@color/BlackColor</item>
         <item name="android:textColorSecondaryInverse">@color/WhiteColor</item>
+        <item name="colorPrimaryDark">@color/MarromColor1</item>
 
     </style>
 

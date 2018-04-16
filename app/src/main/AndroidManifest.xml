@@ -41,8 +41,12 @@
         <activity
             android:name=".PopupCheckReservation"
             android:theme="@style/AppTheme.Custom" />
-        <activity android:name=".CancelReservationPopup"
-            android:theme="@style/AppTheme.Custom"></activity>
+        <activity
+            android:name=".CancelReservationPopup"
+            android:theme="@style/AppTheme.Custom" />
+        <activity android:name=".MeatListActivity" />
+        <activity android:name=".FishListActivity" />
+        <activity android:name=".VeganListActivity"></activity>
     </application>
 
 </manifest>

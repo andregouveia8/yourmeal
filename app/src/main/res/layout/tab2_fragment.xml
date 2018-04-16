@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/dataDia"
+        android:id="@+id/dataDiaFunc2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -23,18 +23,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/dataDiaMes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dataDia"
-        android:layout_centerHorizontal="true"
-        android:text="19 Março"
-        android:textColor="@color/MarromColor1"
-        app:layout_constraintBottom_toTopOf="@+id/dataDia2"
-        app:layout_constraintStart_toStartOf="@+id/dataDia"
-        app:layout_constraintTop_toBottomOf="@+id/dataDia" />
 
     <TextView
         android:id="@+id/dataDia2"
@@ -110,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
 
     <EditText
-        android:id="@+id/txtEmail_Login3"
+        android:id="@+id/txtPeixe_Func"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_centerInParent="true"
@@ -129,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
 
     <EditText
-        android:id="@+id/txtEmail_Login2"
+        android:id="@+id/txtCarne_Func"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"

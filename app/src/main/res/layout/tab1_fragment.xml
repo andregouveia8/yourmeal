@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/dataDia"
+        android:id="@+id/dataDiaFunc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -24,18 +24,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/dataDiaMes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dataDia"
-        android:layout_centerHorizontal="true"
-        android:text="19 Março"
-        android:textColor="@color/MarromColor1"
-        app:layout_constraintBottom_toTopOf="@+id/dataDia2"
-        app:layout_constraintStart_toStartOf="@+id/dataDia"
-        app:layout_constraintTop_toBottomOf="@+id/dataDia" />
 
     <TextView
         android:id="@+id/dataDia2"
@@ -90,6 +78,43 @@
         app:layout_constraintTop_toBottomOf="@+id/dataDia4" />
 
     <EditText
+        android:id="@+id/txtCarneFunc"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/btnFuncCarne"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/inputlogin"
+        android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/worksanslight"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/BlackColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/dataDia4"
+        app:layout_constraintEnd_toStartOf="@+id/btnFuncCarne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
+
+    <EditText
+        android:id="@+id/txtPeixe_Func"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/inputlogin"
+        android:ems="10"
+        android:focusable="false"
+        android:fontFamily="@font/worksanslight"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/BlackColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/dataDia4"
+        app:layout_constraintEnd_toStartOf="@+id/btnFuncCarne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
+
+    <EditText
         android:id="@+id/txtVegan_Func"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -101,46 +126,6 @@
         android:focusable="false"
         android:fontFamily="@font/worksanslight"
         android:inputType="text"
-        android:text="Tofu com Broa"
-        android:textAlignment="center"
-        android:textColor="@color/BlackColor"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/dataDia4"
-        app:layout_constraintEnd_toStartOf="@+id/btnFuncCarne"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
-
-    <EditText
-        android:id="@+id/txtEmail_Login3"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/inputlogin"
-        android:ems="10"
-        android:focusable="false"
-        android:fontFamily="@font/worksanslight"
-        android:inputType="text"
-        android:text="Salmão Grelhado"
-        android:textAlignment="center"
-        android:textColor="@color/BlackColor"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/dataDia4"
-        app:layout_constraintEnd_toStartOf="@+id/btnFuncCarne"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
-
-    <EditText
-        android:id="@+id/txtEmail_Login2"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignBottom="@+id/btnFuncCarne"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/inputlogin"
-        android:ems="10"
-        android:focusable="false"
-        android:fontFamily="@font/worksanslight"
-        android:inputType="text"
-        android:text="Pizza Tradicional"
         android:textAlignment="center"
         android:textColor="@color/BlackColor"
         android:textSize="16sp"
@@ -156,7 +141,7 @@
         android:layout_height="38dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="148dp"
-        android:layout_toEndOf="@+id/txtEmail_Login3"
+        android:layout_toEndOf="@+id/txtPeixe_Func"
         android:drawableStart="@drawable/plusbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtPassword_Atual"
