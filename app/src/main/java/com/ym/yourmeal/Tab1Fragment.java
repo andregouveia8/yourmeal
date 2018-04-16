@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import static android.app.Activity.RESULT_OK;
 
 public class Tab1Fragment extends Fragment {
@@ -23,8 +25,9 @@ public class Tab1Fragment extends Fragment {
     String nameCarne, namePeixe, nameVegan;
     String dia = MainActivity.diadasemana;
     final int REQUEST_CODE = 1;
+    String carne, peixe, vegan;
 
-    String[] menu = new String[]{"beef","fish","vegan"};
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
 
 
     @Nullable
@@ -38,11 +41,6 @@ public class Tab1Fragment extends Fragment {
         txtVegan = view.findViewById(R.id.txtVegan_Func);
 
 
-        txtCarne.setText(menu[0]);
-
-        txtPeixe.setText(menu[1]);
-
-        txtVegan.setText(menu[2]);
 
 
         diaT = view.findViewById(R.id.dataDiaFunc);
@@ -53,7 +51,7 @@ public class Tab1Fragment extends Fragment {
         btnCarne.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getContext().getApplicationContext(), MeatListActivity.class);
-                startActivity(i);
+                startActivityForResult(i,REQUEST_CODE);
             }
         });
 
@@ -61,18 +59,63 @@ public class Tab1Fragment extends Fragment {
         btnPeixe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getContext().getApplicationContext(), FishListActivity.class);
-                startActivity(i);
+                startActivityForResult(i,REQUEST_CODE);
             }
         });
 
         final Button btnVegan = view.findViewById(R.id.btnFuncVegan);
         btnVegan.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(getContext().getApplicationContext(), MeatListActivity.class);
-                startActivity(i);
+                Intent i = new Intent(getContext().getApplicationContext(), VeganListActivity.class);
+                startActivityForResult(i,REQUEST_CODE);
             }
         });
 
+
+        final Button btnAdicionar = view.findViewById(R.id.btnFuncAdicionar);
+        btnAdicionar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String carneBD = txtCarne.getText().toString();
+                String peixeBD = txtPeixe.getText().toString();
+                String veganBD = txtVegan.getText().toString();
+
+                db.getReference("menu").child("beef").setValue(carneBD);
+                db.getReference("menu").child("fish").setValue(peixeBD);
+                db.getReference("menu").child("vegetarian").setValue(veganBD);
+
+
+            }
+        });
+
+
+
+
+
+
+
+
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            if (data.hasExtra("carneName")) {
+                carne = data.getExtras().getString("carneName");
+                txtCarne.setText(carne);
+            } else
+            if (data.hasExtra("peixeName")) {
+                peixe = data.getExtras().getString("peixeName");
+                txtPeixe.setText(peixe);
+            } else
+            if (data.hasExtra("veganName")) {
+                vegan = data.getExtras().getString("veganName");
+                txtVegan.setText(vegan);
+            }
+        }
+
     }
 }

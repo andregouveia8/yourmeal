@@ -32,6 +32,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     ImageView img;
     public static String diadasemana;
+    public static Menu menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
 
 
         img = findViewById(R.id.imgLoading);
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                     String vegetarian = dataSnapshot.child("vegetarian").getValue().toString();
 
 
-                    Menu menu = new Menu(beef,fish,vegetarian);
+                    menu = new Menu(beef,fish,vegetarian);
                     MenuManager.getInstance().setMenu(menu);
 
 
@@ -208,6 +210,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+
 
 
         Thread myThread = new Thread(){

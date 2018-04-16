@@ -20,6 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/MarromColor1"
+            app:tabTextColor="@color/WhiteColor"
+            app:tabIndicatorColor="@color/colorAccent"
             app:tabSelectedTextColor="@color/colorAccent">
 
             <android.support.design.widget.TabItem

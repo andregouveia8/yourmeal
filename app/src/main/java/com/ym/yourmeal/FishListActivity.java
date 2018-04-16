@@ -49,7 +49,6 @@ public class FishListActivity extends AppCompatActivity {
                 String name = fish.get(i);
                 Intent intent = new Intent(getApplicationContext(), EmployeeActivity.class);
                 intent.putExtra("peixeName", name);
-                startActivity(intent);
                 setResult(RESULT_OK, intent);
                 finish();
             }

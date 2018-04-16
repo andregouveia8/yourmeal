@@ -106,6 +106,10 @@ public class ProfileActivity extends AppCompatActivity {
                         db.getReference("users").child(keyUser).child("beef").setValue(0);
                         db.getReference("users").child(keyUser).child("fish").setValue(0);
                         db.getReference("users").child(keyUser).child("vegetarian").setValue(0);
+
+                        finish();
+                        Intent i = new Intent(getApplicationContext(),ProfileActivity.class);
+                        startActivity(i);
                     }
                 }
             }
@@ -134,20 +138,25 @@ public class ProfileActivity extends AppCompatActivity {
 
                 int soma = valorCarne + valorFish + valorVegan;
 
-                if(valorCarne <= 0){
+
+                if (valorCarne <= 0 && valorFish <= 0 && valorVegan <= 0) {
+                    beef = 0;
+                    fish = 0;
+                    vegan = 0;
+                } else if (valorCarne <= 0) {
                     beef = 0;
                     fish = valorFish * 100 / soma;
                     vegan = valorVegan * 100 / soma;
-                }else if(valorFish <= 0){
+                } else if (valorFish <= 0) {
                     beef = valorCarne * 100 / soma;
                     fish = 0;
                     vegan = valorVegan * 100 / soma;
 
-                }else if (valorVegan <= 0){
+                } else if (valorVegan <= 0) {
                     beef = valorCarne * 100 / soma;
                     fish = valorFish * 100 / soma;
                     vegan = 0;
-                }else {
+                } else {
                     beef = valorCarne * 100 / soma;
                     fish = valorFish * 100 / soma;
                     vegan = valorVegan * 100 / soma;
@@ -181,14 +190,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        final Button btnEditar = findViewById(R.id.btnEditarPerfil);
-        btnEditar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                Intent i = new Intent(getApplicationContext(), ChangeProfileActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
 }

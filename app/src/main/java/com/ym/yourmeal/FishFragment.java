@@ -39,7 +39,7 @@ public class FishFragment extends Fragment {
     Button btnFish;
 
     String userLogado;
-    boolean check;
+    boolean check = MealActivity.check;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
     public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
     ArrayList<User> users = UserManager.getInstance().getUsers();
@@ -62,16 +62,6 @@ public class FishFragment extends Fragment {
         txtDataPeixe = (TextView) view.findViewById(R.id.dataPeixe);
 
         txtDataPeixe.setText(day);
-
-
-        for (int i = 0; i< reserves.size(); i++){
-            String email = reserves.get(i).getEmail();
-            if (email.equals(userLogado)){
-                check = true;
-            }else{
-                check = false;
-            }
-        }
 
         btnFish = (Button)view.findViewById(R.id.buttonReservarPeixe);
 

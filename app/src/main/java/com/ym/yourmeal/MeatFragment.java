@@ -40,7 +40,7 @@ public class MeatFragment extends Fragment {
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     ArrayList<Menu> menus;
     DatabaseReference myRef = db.getReference("reservations");
-    boolean check;
+    boolean check = MealActivity.check;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
 
     public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
@@ -57,14 +57,7 @@ public class MeatFragment extends Fragment {
         user = LoginActivity.userLogado;
 
 
-        for (int i = 0; i< reserves.size(); i++){
-            String email = reserves.get(i).getEmail();
-            if (email.equals(userLogado)){
-                check = true;
-            }else{
-                check = false;
-            }
-        }
+
 
         btnCarne = (Button)view.findViewById(R.id.buttonReservarCarne);
 

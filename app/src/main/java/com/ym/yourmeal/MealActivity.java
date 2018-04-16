@@ -40,9 +40,9 @@ public class MealActivity extends AppCompatActivity {
     String nomePeixe;
     String nomeVegan;
     public static String btnClick;
-    String userLogado;
-    boolean check;
+    public static String userLogado;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
+    public static boolean check;
 
 
 
@@ -51,6 +51,8 @@ public class MealActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
+
+        checkReservations();
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs);
@@ -67,6 +69,8 @@ public class MealActivity extends AppCompatActivity {
         userLogado = LoginActivity.userLogado;
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
+
+
 
 
         ArrayList<Menu> menu = MenuManager.getInstance().getMenus();
@@ -169,5 +173,23 @@ public class MealActivity extends AppCompatActivity {
         adapter.addFragment(new FishFragment(), "PEIXE");
         adapter.addFragment(new VeganFragment(), "VEGAN");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkReservations();
+    }
+
+    public static void checkReservations(){
+
+        for (int i = 0; i< reserves.size(); i++){
+            String email = reserves.get(i).getEmail();
+            if (email.equals(userLogado)){
+                check = true;
+            }else{
+                check = false;
+            }
+        }
     }
 }

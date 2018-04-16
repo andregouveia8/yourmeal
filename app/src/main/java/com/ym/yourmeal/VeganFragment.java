@@ -38,7 +38,7 @@ public class VeganFragment extends Fragment {
     ArrayList<Menu> menus;
     DatabaseReference myRef = db.getReference("reservations");
     String userLogado;
-    boolean check;
+    boolean check = MealActivity.check;
     Button btnVegan;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
 
@@ -58,15 +58,6 @@ public class VeganFragment extends Fragment {
         txtVeganNome.setText(vegan.getName());
         Glide.with(this).load(vegan.getImg()).into(imgVegan);
 
-
-        for (int i = 0; i< reserves.size(); i++){
-            String email = reserves.get(i).getEmail();
-            if (email.equals(userLogado)){
-                check = true;
-            }else{
-                check = false;
-            }
-        }
 
         btnVegan = (Button)view.findViewById(R.id.buttonReservarVegan);
 
