@@ -52,7 +52,7 @@
             android:layout_width="111dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/iconreservationpop" />
+            app:srcCompat="@drawable/iconnoreservation" />
     </LinearLayout>
 
     <LinearLayout
