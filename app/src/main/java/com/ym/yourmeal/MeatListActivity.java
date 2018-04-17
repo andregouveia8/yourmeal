@@ -27,7 +27,7 @@ public class MeatListActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.abs_yourmeal);
 
         ListView listView = (ListView) findViewById(R.id.listviewMeat);
-
+        //ENCHE A LISTVIEW
         final List<String> beef = new ArrayList<String>();
         ArrayList<Meal> meals = MealManager.getInstance().getMeals();
         for (int i = 0; i< meals.size(); i++){
@@ -44,7 +44,7 @@ public class MeatListActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, beef);
         listView.setAdapter(adapter);
-
+//RETORNA O VALOR SELECIONADO
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView <?> adapterView, View view, int i, long l) {

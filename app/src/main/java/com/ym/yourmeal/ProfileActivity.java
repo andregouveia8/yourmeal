@@ -119,6 +119,7 @@ public class ProfileActivity extends AppCompatActivity {
         progressBarPeixe = findViewById(R.id.progressBarPeixe);
         progressBarVegan = findViewById(R.id.progressBarVegan);
 
+        //ENCHER OS PROGRESSBAR NO PERFIL
         for (int x = 0; x < users.size(); x++) {
             if (userEmail.equals(users.get(x).getEmail())) {
 

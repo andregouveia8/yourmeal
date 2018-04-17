@@ -67,7 +67,7 @@ public class FishFragment extends Fragment {
 
         btnFish = (Button)view.findViewById(R.id.buttonReservarPeixe);
 
-
+        //BTN ENABLE
         if (check){
             btnFish.setVisibility(View.GONE);
         }else if(!check){
@@ -94,13 +94,13 @@ public class FishFragment extends Fragment {
                 String user = LoginActivity.userLogado;
                 menus = MenuManager.getInstance().getMenus();
 
-                //Adicionar reservas na base de dados
-
+                //ADICIONAR RESERVA
                 String key = myRef.push().getKey();
 
                 Reservation reservation= new Reservation ("peixe", user, menus.get(0).fish);
                 myRef.child(key).setValue(reservation);
 
+                //ATUALIZA ESTATISTICAS USER
                 for (int x = 0; x < users.size(); x++){
                     if(user.equals(users.get(x).getEmail())){
                         int fish = Integer.parseInt(users.get(x).getFish().toString());

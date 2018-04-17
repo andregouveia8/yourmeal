@@ -174,6 +174,7 @@ public class MealActivity extends AppCompatActivity {
                 });
     }
 
+    //VERIFICA SE O USER LOGADO TEM RESERVAS
     public static boolean checkReservations(){
         for (int i = 0; i< reserves.size(); i++){
             String email = reserves.get(i).getEmail();

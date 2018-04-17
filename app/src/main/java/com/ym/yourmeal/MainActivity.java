@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //READ RESERVATIONS
         DatabaseReference reservationsRef = db.getReference("reservations");
         reservationsRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -50,6 +50,7 @@ public class PopupInfo extends AppCompatActivity {
         desc = findViewById(R.id.txtDescInfo);
         hid = findViewById(R.id.txtHidInfo);
 
+        //ALTERAR A POP UP CONSOANTE O TIPO DE CARNE
         if(tipoPrato.equals("carne")){
             desc.setText(beef.getDescription());
 

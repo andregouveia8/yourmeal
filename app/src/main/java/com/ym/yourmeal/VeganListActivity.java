@@ -27,7 +27,7 @@ public class VeganListActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.abs_yourmeal);
 
         ListView listView = (ListView) findViewById(R.id.listVegan);
-
+//ENCHER A LIST VIEW
         final List<String> vegan = new ArrayList<String>();
         ArrayList<Meal> meals = MealManager.getInstance().getMeals();
         for (int i = 0; i< meals.size(); i++){
@@ -41,7 +41,7 @@ public class VeganListActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, vegan);
         listView.setAdapter(adapter);
-
+//RETORNA O VALOR SELECIONADO
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView <?> adapterView, View view, int i, long l) {

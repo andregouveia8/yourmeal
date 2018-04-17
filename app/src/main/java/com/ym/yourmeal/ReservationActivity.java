@@ -84,7 +84,7 @@ public class ReservationActivity extends AppCompatActivity {
         checkReservation();
 
 
-
+//ENCHER COM A RESERVA
         for (int i = 0; i< reserves.size(); i++){
             String email = reserves.get(i).getEmail();
             if (email.equals(user)){

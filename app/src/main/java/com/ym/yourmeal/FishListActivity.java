@@ -28,23 +28,22 @@ public class FishListActivity extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.listFish);
 
+        //ENCHE A LISTVIEW
         final List<String> fish = new ArrayList<String>();
         ArrayList<Meal> meals = MealManager.getInstance().getMeals();
         for (int i = 0; i< meals.size(); i++){
             String dish = meals.get(i).getDish();
-            Log.d("listviewtag", "Dish: " + dish);
+
             if(dish.equals("Peixe")){
                 String name = meals.get(i).getName();
-                Log.d("listviewtag", "Name: " + name);
                 fish.add(name);
-            } else {
-                Log.d("listviewtag", "N e de carne!!!");
             }
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fish);
         listView.setAdapter(adapter);
 
+        //RETORNA O VALOR SELECIONADO
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView <?> adapterView, View view, int i, long l) {

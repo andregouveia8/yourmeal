@@ -61,7 +61,7 @@ public class MeatFragment extends Fragment {
 
         btnCarne = (Button)view.findViewById(R.id.buttonReservarCarne);
 
-        Log.d("tag", "valor do check" + check);
+        //BTN ENABLE EM CASO DE TER UMA RESERVA
         if (check){
             btnCarne.setVisibility(View.GONE);
         } else if(!check){
@@ -104,8 +104,7 @@ public class MeatFragment extends Fragment {
 
                 String key = myRef.push().getKey();
 
-                Log.d("e", menus.get(0).beef);
-
+            //ADICIONA RESERVA
                 Reservation reservation= new Reservation ("carne", user, menus.get(0).beef);
                 myRef.child(key).setValue(reservation);
 

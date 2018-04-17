@@ -71,6 +71,7 @@ public class Tab1Fragment extends Fragment {
             }
         });
 
+//ALTERAR O MENU
 
         final Button btnAdicionar = view.findViewById(R.id.btnFuncAdicionar);
         btnAdicionar.setOnClickListener(new View.OnClickListener() {

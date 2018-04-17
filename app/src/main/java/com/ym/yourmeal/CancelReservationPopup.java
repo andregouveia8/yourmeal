@@ -39,7 +39,6 @@ public class CancelReservationPopup extends AppCompatActivity {
         setContentView(R.layout.activity_cancel_reservation_popup);
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.hide();
 
         DisplayMetrics dm = new DisplayMetrics();
@@ -69,7 +68,7 @@ public class CancelReservationPopup extends AppCompatActivity {
             public void onClick(View v) {
                 String user = LoginActivity.userLogado;
 
-
+//REMOVE RESERVA DO USER
                 for (int i = 0; i< reserves.size(); i++){
                     String email = reserves.get(i).getEmail();
                     if (email.equals(user)){
@@ -89,7 +88,7 @@ public class CancelReservationPopup extends AppCompatActivity {
                         String keyUser = keysUsers.get(x);
                         Log.d("tag", "for users "+prato);
 
-
+                        //ATUALIZA ESTATISITICAS USER
                         if(prato.equals("carne")){
                             int beef = Integer.parseInt(users.get(x).getBeef().toString());
                             beef = beef - 1;
@@ -106,15 +105,8 @@ public class CancelReservationPopup extends AppCompatActivity {
                             vegan = vegan - 1;
                             db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
                         }
-
-                        Boolean aaa =  MealActivity.checkReservations();
-                        Log.d("tag", "bolean " + aaa);
-
                     }
                 }
-
-
-
                 Intent i = new Intent(getApplicationContext(), NoReservationActivity.class);
                 startActivity(i);
                 finish();

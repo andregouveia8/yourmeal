@@ -62,6 +62,7 @@ public class VeganFragment extends Fragment {
 
         btnVegan = (Button)view.findViewById(R.id.buttonReservarVegan);
 
+        //BTN ENABLE CASO TENHA RESERVA
         if (check){
             btnVegan.setVisibility(View.GONE);
         }
@@ -92,10 +93,11 @@ public class VeganFragment extends Fragment {
                 menus = MenuManager.getInstance().getMenus();
 
                 String key = myRef.push().getKey();
-
+//ADICIONA RESEVA
                 Reservation reservation= new Reservation ("vegatarian", user, menus.get(0).vegetarian);
                 myRef.child(key).setValue(reservation);
 
+                //ATUALIZAR ESTATISTICAS
                 for (int x = 0; x < users.size(); x++){
                     if(user.equals(users.get(x).getEmail())){
                         int vegan = Integer.parseInt(users.get(x).getVegetarian().toString());
