@@ -1,5 +1,6 @@
 package com.ym.yourmeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,9 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.ym.yourmeal.imp.ReservationManager;
 import com.ym.yourmeal.models.Reservation;
 
@@ -21,6 +24,7 @@ public class Tab2Fragment extends Fragment {
     EditText txtReservasPeixe;
     EditText txtReservasVegan;
 
+    private FirebaseAuth mAuth;
 
     TextView diaT;
     String dia = MainActivity.diadasemana;
@@ -56,6 +60,18 @@ public class Tab2Fragment extends Fragment {
         txtReservasCarne.setText(String.valueOf(reservasCarne) + " Reservas");
         txtReservasPeixe.setText(String.valueOf(reservasPeixe) + " Reservas");
         txtReservasVegan.setText(String.valueOf(reservasVegan) + " Reservas");
+
+        //LOGOUT
+        mAuth = FirebaseAuth.getInstance();
+        Button btnSair = (Button) view.findViewById(R.id.btnLogoutFunc);
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mAuth.signOut();
+                Intent i = new Intent(getContext().getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
 
         return view;
     }

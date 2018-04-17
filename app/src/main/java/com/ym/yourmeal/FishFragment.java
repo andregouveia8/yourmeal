@@ -39,7 +39,7 @@ public class FishFragment extends Fragment {
     Button btnFish;
 
     String userLogado;
-    boolean check = MealActivity.check;
+    boolean check;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
     public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
     ArrayList<User> users = UserManager.getInstance().getUsers();
@@ -51,6 +51,8 @@ public class FishFragment extends Fragment {
 
         fish = MealActivity.fishMenu;
         dia = MainActivity.diadasemana;
+
+        check = MealActivity.checkReservations();
 
         imgPeixe = (ImageView) view.findViewById(R.id.imgPeixeMeal);
 
@@ -68,6 +70,8 @@ public class FishFragment extends Fragment {
 
         if (check){
             btnFish.setVisibility(View.GONE);
+        }else if(!check){
+            btnFish.setVisibility(View.VISIBLE);
         }
 
 

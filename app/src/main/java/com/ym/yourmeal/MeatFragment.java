@@ -40,7 +40,7 @@ public class MeatFragment extends Fragment {
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     ArrayList<Menu> menus;
     DatabaseReference myRef = db.getReference("reservations");
-    boolean check = MealActivity.check;
+    boolean check;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
 
     public static ArrayList<String> keysUsers = UserManager.getInstance().getKeys();
@@ -56,13 +56,16 @@ public class MeatFragment extends Fragment {
         beef = MealActivity.beefMenu;
         user = LoginActivity.userLogado;
 
-
+        check = MealActivity.checkReservations();
 
 
         btnCarne = (Button)view.findViewById(R.id.buttonReservarCarne);
 
+        Log.d("tag", "valor do check" + check);
         if (check){
             btnCarne.setVisibility(View.GONE);
+        } else if(!check){
+            btnCarne.setVisibility(View.VISIBLE);
         }
 
 

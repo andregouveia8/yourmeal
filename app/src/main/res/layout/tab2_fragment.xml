@@ -137,4 +137,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dataDia2" />
 
+    <Button
+        android:id="@+id/btnLogoutFunc"
+        android:layout_width="198dp"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="58dp"
+        android:background="@drawable/buttonstyle3"
+        android:text="Sair"
+        android:textColor="@color/MarromColor1" />
+
 </RelativeLayout>

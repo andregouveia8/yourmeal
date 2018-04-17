@@ -84,6 +84,8 @@ public class Tab1Fragment extends Fragment {
                 db.getReference("menu").child("fish").setValue(peixeBD);
                 db.getReference("menu").child("vegetarian").setValue(veganBD);
 
+                db.getReference("reservations").removeValue();
+
 
             }
         });

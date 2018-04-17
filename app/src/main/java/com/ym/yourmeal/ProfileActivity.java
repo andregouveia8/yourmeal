@@ -36,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     ProgressBar progressBarCarne, progressBarPeixe, progressBarVegan;
 
+
     public static ArrayList<String> keysUsers = com.ym.yourmeal.imp.UserManager.getInstance().getKeys();
     ArrayList<User> users = com.ym.yourmeal.imp.UserManager.getInstance().getUsers();
 
@@ -43,21 +44,14 @@ public class ProfileActivity extends AppCompatActivity {
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
     String userEmail = LoginActivity.userLogado;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.reservation_menu:
-                    for (int i = 0; i < reserves.size(); i++) {
-                        String email = reserves.get(i).getEmail();
-                        if (email.equals(userEmail)) {
-                            check = true;
-                        } else {
-                            check = false;
-                        }
-                    }
+                    check = MealActivity.checkReservations();
                     if (check) {
                         Intent intentReservation = new Intent(getApplicationContext(), ReservationActivity.class);
                         startActivity(intentReservation);

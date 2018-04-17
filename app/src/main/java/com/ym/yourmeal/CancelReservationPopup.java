@@ -75,10 +75,10 @@ public class CancelReservationPopup extends AppCompatActivity {
                     if (email.equals(user)){
                         String key = keys.get(i);
                         prato = reserves.get(i).dish;
+                        reserves.remove(i);
+                        keys.remove(i);
                         resRef.child(key).removeValue();
                         Log.d("tag", "for reservas "+prato);
-
-
 
                     }
 
@@ -107,9 +107,13 @@ public class CancelReservationPopup extends AppCompatActivity {
                             db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
                         }
 
+                        Boolean aaa =  MealActivity.checkReservations();
+                        Log.d("tag", "bolean " + aaa);
 
                     }
                 }
+
+
 
                 Intent i = new Intent(getApplicationContext(), NoReservationActivity.class);
                 startActivity(i);

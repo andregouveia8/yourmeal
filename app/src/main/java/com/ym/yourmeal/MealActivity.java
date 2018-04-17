@@ -35,14 +35,10 @@ public class MealActivity extends AppCompatActivity {
     public static  Meal beefMenu;
     public static  Meal fishMenu;
     public static  Meal veganMenu;
-    Button btnCarne, btnPeixe, btnVegan;
-    String nomeCarne;
-    String nomePeixe;
-    String nomeVegan;
-    public static String btnClick;
     public static String userLogado;
     public static ArrayList<Reservation> reserves = ReservationManager.getInstance().getReservations();
     public static boolean check;
+    BottomNavigationView bottomNavigationView;
 
 
 
@@ -52,7 +48,6 @@ public class MealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
 
-        checkReservations();
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs);
@@ -67,7 +62,7 @@ public class MealActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         userLogado = LoginActivity.userLogado;
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+        bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
 
 
@@ -127,6 +122,26 @@ public class MealActivity extends AppCompatActivity {
             }
         }
 
+        check = checkReservations();
+
+
+    }
+
+
+
+    public void setupViewPager(ViewPager upViewPager) {
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new MeatFragment(), "CARNE");
+        adapter.addFragment(new FishFragment(), "PEIXE");
+        adapter.addFragment(new VeganFragment(), "VEGAN");
+        viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        check = checkReservations();
+
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -134,14 +149,8 @@ public class MealActivity extends AppCompatActivity {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.reservation_menu:
-                                for (int i = 0; i< reserves.size(); i++){
-                                    String email = reserves.get(i).getEmail();
-                                    if (email.equals(userLogado)){
-                                        check = true;
-                                    }else{
-                                        check = false;
-                                    }
-                                }
+                                check = MealActivity.checkReservations();
+
                                 if(check){
                                     Intent intentReservation = new Intent(getApplicationContext(),ReservationActivity.class);
                                     startActivity(intentReservation);
@@ -165,31 +174,15 @@ public class MealActivity extends AppCompatActivity {
                 });
     }
 
-
-
-    public void setupViewPager(ViewPager upViewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MeatFragment(), "CARNE");
-        adapter.addFragment(new FishFragment(), "PEIXE");
-        adapter.addFragment(new VeganFragment(), "VEGAN");
-        viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        checkReservations();
-    }
-
-    public static void checkReservations(){
-
+    public static boolean checkReservations(){
         for (int i = 0; i< reserves.size(); i++){
             String email = reserves.get(i).getEmail();
-            if (email.equals(userLogado)){
-                check = true;
-            }else{
-                check = false;
+            if (email.equals(userLogado)) {
+                Log.d("tag2","true");
+                Log.d("tag2","O user é " + userLogado);
+                return true;
             }
         }
+        return false;
     }
 }
