@@ -118,7 +118,11 @@ public class ReservationActivity extends AppCompatActivity {
                     if (email.equals(user)){
                         String key = keys.get(i);
                         prato = reserves.get(i).dish;
+                        reserves.remove(i);
+                        keys.remove(i);
                         resRef.child(key).removeValue();
+
+
                         Log.d("tag", "for reservas "+prato);
 
 
