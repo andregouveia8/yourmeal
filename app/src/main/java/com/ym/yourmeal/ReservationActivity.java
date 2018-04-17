@@ -117,36 +117,41 @@ public class ReservationActivity extends AppCompatActivity {
                     String email = reserves.get(i).getEmail();
                     if (email.equals(user)){
                         String key = keys.get(i);
-                        resRef.child(key).removeValue();
-
                         prato = reserves.get(i).dish;
-                        for (int x = 0; x < users.size(); x++){
-                            if(user.equals(users.get(x).getEmail())){
-                                String keyUser = keysUsers.get(x);
-
-                                if(prato.equals("carne")){
-                                    int beef = Integer.parseInt(users.get(x).getBeef().toString());
-                                    beef = beef - 1;
-                                    db.getReference("users").child(keyUser).child("beef").setValue(beef);
-                                } else
-
-                                if(prato.equals("peixe")){
-                                    int fish = Integer.parseInt(users.get(x).getFish().toString());
-                                    fish= fish- 1;
-                                    db.getReference("users").child(keyUser).child("fish").setValue(fish);
-                                }else
-
-                                if(prato.equals("vegetarian")){
-                                    int vegan = Integer.parseInt(users.get(x).getVegetarian().toString());
-                                    vegan = vegan - 1;
-                                    db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
-                                }
+                        resRef.child(key).removeValue();
+                        Log.d("tag", "for reservas "+prato);
 
 
-                            }
-                        }
+
                     }
 
+                }
+
+                for (int x = 0; x < users.size(); x++){
+                    if(user.equals(users.get(x).getEmail())){
+                        String keyUser = keysUsers.get(x);
+                        Log.d("tag", "for users "+prato);
+
+
+                        if(prato.equals("carne")){
+                            int beef = Integer.parseInt(users.get(x).getBeef().toString());
+                            beef = beef - 1;
+                            db.getReference("users").child(keyUser).child("beef").setValue(beef);
+                        } else
+
+                        if(prato.equals("peixe")){
+                            int fish = Integer.parseInt(users.get(x).getFish().toString());
+                            fish= fish- 1;
+                            db.getReference("users").child(keyUser).child("fish").setValue(fish);
+                        }else{
+                            Log.d("tag", "entrei");
+                            int vegan = Integer.parseInt(users.get(x).getVegetarian().toString());
+                            vegan = vegan - 1;
+                            db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
+                        }
+
+
+                    }
                 }
 
 

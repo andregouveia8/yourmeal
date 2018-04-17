@@ -69,48 +69,48 @@ public class CancelReservationPopup extends AppCompatActivity {
             public void onClick(View v) {
                 String user = LoginActivity.userLogado;
 
-                for (int i = 0; i < reserves.size(); i++) {
+
+                for (int i = 0; i< reserves.size(); i++){
                     String email = reserves.get(i).getEmail();
-                    if (email.equals(user)) {
+                    if (email.equals(user)){
                         String key = keys.get(i);
-
-
+                        prato = reserves.get(i).dish;
                         resRef.child(key).removeValue();
-                        prato = reserves.get(i).getDish();
-                        Log.d("tag", prato);
+                        Log.d("tag", "for reservas "+prato);
 
-                        for(int  x =0; x<users.size();x++){
-                            String emailuser = users.get(x).email;
-                            String keyUser = keysUsers.get(x);
-                            if(emailuser.equals(user)){
-                                String carne = "carne";
-                                String peixe = "peixe";
-                                String vegan = "vegetarian";
 
-                                if(carne.equals(prato)){
-                                    int carneUser = Integer.parseInt(users.get(x).getBeef().toString());
-                                    carneUser = carneUser - 1;
-                                    db.getReference("users").child(keyUser).child("beef").setValue(carneUser);
-                                }
 
-                                if(peixe.equals(prato)){
-                                    int peixeUser = Integer.parseInt(users.get(x).getBeef().toString());
-                                    peixeUser = peixeUser- 1;
-                                    db.getReference("users").child(keyUser).child("fish").setValue(peixeUser);
-                                }
-
-                                if(vegan.equals(prato)){
-                                    int veganUser= Integer.parseInt(users.get(x).getBeef().toString());
-                                    veganUser = veganUser - 1;
-                                    db.getReference("users").child(keyUser).child("vegetarian").setValue(veganUser);
-                                }
-                            }
-                        }
-
-                        //TODO VER ESTATISTICAS ERRO AO ATUALIZAR??
                     }
 
                 }
+
+                for (int x = 0; x < users.size(); x++){
+                    if(user.equals(users.get(x).getEmail())){
+                        String keyUser = keysUsers.get(x);
+                        Log.d("tag", "for users "+prato);
+
+
+                        if(prato.equals("carne")){
+                            int beef = Integer.parseInt(users.get(x).getBeef().toString());
+                            beef = beef - 1;
+                            db.getReference("users").child(keyUser).child("beef").setValue(beef);
+                        } else
+
+                        if(prato.equals("peixe")){
+                            int fish = Integer.parseInt(users.get(x).getFish().toString());
+                            fish= fish- 1;
+                            db.getReference("users").child(keyUser).child("fish").setValue(fish);
+                        }else{
+                            Log.d("tag", "entrei");
+                            int vegan = Integer.parseInt(users.get(x).getVegetarian().toString());
+                            vegan = vegan - 1;
+                            db.getReference("users").child(keyUser).child("vegetarian").setValue(vegan);
+                        }
+
+
+                    }
+                }
+
                 Intent i = new Intent(getApplicationContext(), NoReservationActivity.class);
                 startActivity(i);
                 finish();
